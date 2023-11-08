@@ -1,0 +1,84 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="es">
+   <head th:replace= "/fragments/head :: head"> </head>
+
+    <body>
+        <nav 
+            th:replace= "/fragments/navbar :: nav">    
+        </nav>
+
+        <main class="d-flex flex-column  text-center mt-4">
+
+            <h3 class="titulo_eliTurno mb-4">Eliminar Usuario</h3>
+
+            <div class="conte_turno m-auto">
+                <form class=" conte_turno " th:action="@{/eliminado/__${usuario.id}__}" method="POST">
+
+                    <div class="conte_dtsTurno">
+                        <label class="justify-content-center "><strong>ID Del Usuario</strong></label>
+                        <div class="col-sm-12">
+                            <input type="text" 
+                                   readonly 
+                                   class="form-control-plaintext justify-content-center" 
+                                   name="id" 
+                                   th:value="${usuario.id}">
+                        </div>
+                    </div>
+
+                    <div class="form-group cont-eliTurno ">
+                        <div class="form-group m-auto titulo_eliTurno "> 
+                            <label><strong>DATOS DEL USUARIO</strong></label> 
+                            <div class="form-group m-auto my-3"> 
+                                <label class="mb-2">nombre del Usuario</label> 
+
+                                <input type="text" 
+                                       class="form-control" 
+                                       readonly
+                                       name="nombre"
+                                       th:value="${usuario.nombre}">
+                            </div>
+
+                            <div class="form-group m-auto my-3"> 
+                                <label class="mb-2">Email del usuario</label> 
+
+                                <input type="text" 
+                                       class="form-control" 
+                                       readonly
+                                       name="email"
+                                       th:value="${usuario.email}">
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="text-center container boton">
+                        <button type="submit" class="btn btn-primary">Eliminar</button>
+                    </div>
+                    <div class=" text-center container mb-3 boton-v">
+                        <button type="submit" class="btn btn-primary">Volver</button>
+                    </div>
+
+                </form>
+            </div>
+            <div th:if="${error != null}" class="card text-white bg-danger mb-3 mensajeError" >
+                <div class="card-body">
+                    <h5 class="card-title">Error </h5>
+                    <p class="card-text" th:text="${error}"></p>
+                </div>
+            </div>
+            <div th:if="${exito != null}" class="card text-white bg-success mb-3 mt-3 mensajeExito" >
+                <div class="card-body">
+                    <h5 class="card-title">El producto Se elimino Correctamente!</h5>
+                    <p class="card-text" th:text="${exito}"></p>
+                </div>
+            </div>
+        </main>
+        <footer th:replace= "/fragments/footer :: footer"> </footer>
+
+        <!-- JavaScript Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+        <!-- script carousel -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
+    </body>
+</html>
