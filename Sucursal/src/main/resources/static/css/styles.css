@@ -231,7 +231,7 @@ th, td {
 
 /*---------------------------------------------navbar*/
 .navbar {
-    background-color: pink; /* Color de fondo del navbar */
+    background-color: darkgrey; /* Color de fondo del navbar */
     display: flex; /* Establece el modelo de caja como flex para alinear elementos */
     justify-content: space-between; /* Espacio entre elementos en el navbar */
     align-items: center; /* Centra verticalmente los elementos */
@@ -302,7 +302,7 @@ th, td {
 /* Establecer un tamaño fijo para el footer */
 footer {
     height: 100px; /* Puedes ajustar la altura según tus necesidades */
-    background-color: #333; /* Color de fondo del footer */
+    background-color: darkgrey; /* Color de fondo del footer */
     color: #fff; /* Color del texto en el footer */
 
 

@@ -15,9 +15,7 @@
                         <th scope="col">Precio Oferta</th>
                         <th scope="col">contenido</th>
                         <th scope="col">Alta Oferta</th>
-
-
-                        <th scope="col" >Acciones</th>
+                        <th scope="col" colspan="3">Acciones</th>
 
                     </tr>
                 </thead>
@@ -33,13 +31,13 @@
 
                         <td>
                             <a  th:href= "@{/oferta/modificar/__${oferta.idOferta}__}"><i class="fas fa-feather-alt"></i> Modificar Oferta </a>
+
                         </td>
                         <td>
-
                             <a  th:href= "@{/oferta/eliminar/__${oferta.idOferta}__}"><i class="fas fa-feather-alt"></i> Eliminar Oferta </a>
+
                         </td>
                         <td>
-
                             <a  th:href="@{/oferta/exportarPDF}"><i class="fas fa-feather-alt"></i> Exportar PDF </a>
                         </td>
 

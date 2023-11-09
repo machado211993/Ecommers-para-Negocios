@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:replace= "/fragments/head :: head"> </head>
+    <head th:replace= "/fragments/head :: head"> </head>
 
     <body>
         <nav 
@@ -13,7 +13,7 @@
                     <tr>
                         <th scope="col">Id del Proveedor</th>
                         <th scope="col">Nombre del Proveedor</th>
-                        <th scope="col" sec:authorize="hasRole('ADMIN')" >Acciones</th>
+                        <th scope="col" sec:authorize="hasRole('ADMIN')" colspan="2" >Acciones</th>
 
                     </tr>
                 </thead>

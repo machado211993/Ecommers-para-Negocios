@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-  <head th:replace= "/fragments/head :: head"> </head>
+    <head th:replace= "/fragments/head :: head"> </head>
 
     <body>
         <nav 
@@ -16,7 +16,7 @@
                         <th scope="col">Foto de Perfil</th>
                         <th scope="col">Rol</th>
                         <th scope="col">Cambiar Rol</th>
-                        <th scope="col" >Acciones</th>
+                        <th scope="col" colspan="3">Acciones</th>
 
                     </tr>
                 </thead>
@@ -34,7 +34,6 @@
                             <a th:href= "@{/admin/modificarRol/__${usuario.id}__}"><i class="fas fa-feather-alt"></i>Cambiar Rol</a>
                         </td>
 
-                        
                         <td>
                             <a th:href= "@{/modificar/__${usuario.id}__}"><i class="fas fa-feather-alt"></i> Modificar</a>
                         </td>
@@ -44,7 +43,7 @@
                         <td>
                             <a  th:href="@{/exportarPDF}"><i class="fas fa-feather-alt"></i> Exportar PDF </a>
                         </td>
-                        
+
 
                     </tr>
 
