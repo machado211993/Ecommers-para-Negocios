@@ -8,7 +8,6 @@ import com.egg.biblioteca.repositorios.ProductoRepositorio;
 import com.egg.biblioteca.servicios.ProductoServicio;
 import com.egg.biblioteca.servicios.ProveedorServicio;
 import com.egg.biblioteca.servicios.RubroServicio;
-import com.egg.biblioteca.util.paginacion.PageRender;
 import com.egg.biblioteca.util.reportes.ProductoExporterPDF;
 import java.io.IOException;
 import java.text.DateFormat;
@@ -17,16 +16,12 @@ import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -81,6 +76,7 @@ public class ProductoControlador {
         }
         return "index.html";
     }
+
     //PREGUNTAR
     @GetMapping("/lista")
     public String listar(ModelMap modelo, @Param("palabraClave") String palabraClave) {
@@ -175,19 +171,5 @@ public class ProductoControlador {
         List<Producto> productos = productoServicio.listarProductos(); //cargo la lista
         ProductoExporterPDF exporter = new ProductoExporterPDF(productos);
         exporter.exportar(response);
-
     }
-
-    //paginacion 
-    @GetMapping({"/", "/listar", ""})
-    public String listarProductos(@RequestParam(name = "page", defaultValue = "0") int page, Model modelo) {
-        Pageable pageRequest = PageRequest.of(page, 5);
-        Page<Producto> productos = productoRepositorio.findAll(pageRequest);
-        PageRender<Producto> pageRender = new PageRender<>("/lista", productos);
-        modelo.addAttribute("titulo", "listado de productos");
-        modelo.addAttribute("productos", productos);
-        modelo.addAttribute("page", pageRender);
-        return "listar";
-    }
-
 }

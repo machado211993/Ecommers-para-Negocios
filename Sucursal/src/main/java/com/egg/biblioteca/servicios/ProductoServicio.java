@@ -66,6 +66,7 @@ public class ProductoServicio {
 
         productoRepositorio.save(producto);
     }
+    //funcionalidad para listado de productos
 
     public List<Producto> listarProductos() {
 
@@ -81,8 +82,14 @@ public class ProductoServicio {
         if (palabraClave != null) {
             return productoRepositorio.findAll(palabraClave);
         }
+
         return productoRepositorio.findAll();
     }
+
+//    //funcionalidad para paginacion 
+//    public Page<Producto> findAll(Pageable pageable) {
+//        return productoRepositorio.findAll(pageable);
+//    }
 
     @Transactional
     public void modificarProducto(MultipartFile archivo, String idProducto, String codigo, String nombre, Integer precio, String idProveedor, String idRubro) throws MiException {
@@ -170,4 +177,5 @@ public class ProductoServicio {
 
     }
 
+    
 }

@@ -1,10 +1,8 @@
 package com.egg.biblioteca.controladores;
 
 import com.egg.biblioteca.entidades.Imagen;
-import com.egg.biblioteca.entidades.Producto;
 import com.egg.biblioteca.entidades.Usuario;
 import com.egg.biblioteca.servicios.ImagenServicio;
-import com.egg.biblioteca.servicios.ProductoServicio;
 import com.egg.biblioteca.servicios.UsuarioServicio;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;

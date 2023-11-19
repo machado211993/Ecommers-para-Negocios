@@ -72,7 +72,7 @@ public class AdminControlador {
         return new ResponseEntity<>(imagen, headers, HttpStatus.OK);
     }
 
-    //funcionalidad para devolver ofertaServicio
+    //funcionalidad para devolver ofertaServicio imagen
     @GetMapping("/dashboard/{idOferta}")
     public ResponseEntity<byte[]> imagenOferta(@PathVariable String idOferta) {
 

@@ -2,14 +2,11 @@ package com.egg.biblioteca.controladores;
 
 import com.egg.biblioteca.entidades.Oferta;
 import com.egg.biblioteca.entidades.Producto;
-
 import com.egg.biblioteca.entidades.Usuario;
 import com.egg.biblioteca.excepciones.MiException;
 import com.egg.biblioteca.servicios.OfertaServicio;
 import com.egg.biblioteca.servicios.ProductoServicio;
-
 import com.egg.biblioteca.servicios.UsuarioServicio;
-import com.egg.biblioteca.util.reportes.ProductoExporterPDF;
 import com.egg.biblioteca.util.reportes.UsuarioExporterPDF;
 import java.io.IOException;
 import java.text.DateFormat;
@@ -17,11 +14,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
-
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;

@@ -320,3 +320,28 @@ footer {
 
     overflow: auto; /* Agregar barra de desplazamiento vertical si el contenido es demasiado grande */
 }
+
+/*estilo para about (footer)*/
+#bodyAbout{
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+#headerAbout {
+    text-align: center;
+    background-color: pink;
+    color: white;
+    padding: 10px;
+}
+
+#sectionAbout {
+    margin: 20px 0;
+}
+
+#h2About {
+    color: #36A2EB;
+}
+
+#pAbout {
+    line-height: 1.6;
+}
