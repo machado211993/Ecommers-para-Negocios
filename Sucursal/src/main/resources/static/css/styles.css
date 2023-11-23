@@ -70,11 +70,7 @@
     height: 550px;
     display: flex;
     justify-content: end;
-
-
 }
-
-
 
 .contenedorLibros{
     margin-top: 80px;
@@ -308,6 +304,8 @@ footer {
 
     text-align: center; /* Alineación del contenido en el centro */
     padding: 20px; /* Espaciado interior del footer */
+
+    margin-top: auto;
 }
 
 /* Opcional: Establecer un tamaño mínimo y máximo para el footer */
@@ -344,4 +342,16 @@ footer {
 
 #pAbout {
     line-height: 1.6;
+}
+
+body{
+    background-image: url(../img/background.jpg);
+    background-size: cover;
+    background-repeat: repeat;
+    font-family: 'Numans', sans-serif;
+
+    display: grid;
+    min-height: 100vh;
+    grid-template-rows: auto 1fr auto;
+
 }

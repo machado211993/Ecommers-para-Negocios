@@ -1,76 +1,76 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="es">
-   <head th:replace= "/fragments/head :: head"> </head>
+    <head th:replace= "/fragments/head :: head"> </head>
 
     <body>
         <nav 
             th:replace= "/fragments/navbar :: nav">    
         </nav>
 
-        <main class="d-flex flex-column  text-center mt-4">
 
-            <h3 class="titulo_eliTurno mb-4">Eliminar Producto</h3>
 
-            <div class="conte_turno m-auto">
-                <form class=" conte_turno " th:action="@{/producto/eliminado/__${producto.idProducto}__}" method="POST">
+        <h3 class="titulo_eliTurno mb-4">Eliminar Producto</h3>
 
-                    <div class="conte_dtsTurno">
-                        <label class="justify-content-center "><strong>ID Del Producto</strong></label>
-                        <div class="col-sm-12">
+        <div class="conte_turno m-auto">
+            <form class=" conte_turno " th:action="@{/producto/eliminado/__${producto.idProducto}__}" method="POST">
+
+                <div class="conte_dtsTurno">
+                    <label class="justify-content-center "><strong>ID Del Producto</strong></label>
+                    <div class="col-sm-12">
+                        <input type="text" 
+                               readonly 
+                               class="form-control-plaintext justify-content-center" 
+                               name="idProducto" 
+                               th:value="${producto.idProducto}">
+                    </div>
+                </div>
+
+                <div class="form-group cont-eliTurno ">
+                    <div class="form-group m-auto titulo_eliTurno "> 
+                        <label><strong>DATOS DEL PRODUCTO</strong></label> 
+                        <div class="form-group m-auto my-3"> 
+                            <label class="mb-2">Codigo del Producto</label> 
+
                             <input type="text" 
-                                   readonly 
-                                   class="form-control-plaintext justify-content-center" 
-                                   name="idProducto" 
-                                   th:value="${producto.idProducto}">
+                                   class="form-control" 
+                                   readonly
+                                   name="codigo"
+                                   th:value="${producto.codigo}">
                         </div>
-                    </div>
 
-                    <div class="form-group cont-eliTurno ">
-                        <div class="form-group m-auto titulo_eliTurno "> 
-                            <label><strong>DATOS DEL PRODUCTO</strong></label> 
-                            <div class="form-group m-auto my-3"> 
-                                <label class="mb-2">Codigo del Producto</label> 
+                        <div class="form-group m-auto my-3"> 
+                            <label class="mb-2">Nombre del Producto</label> 
 
-                                <input type="text" 
-                                       class="form-control" 
-                                       readonly
-                                       name="codigo"
-                                       th:value="${producto.codigo}">
-                            </div>
-
-                            <div class="form-group m-auto my-3"> 
-                                <label class="mb-2">Nombre del Producto</label> 
-
-                                <input type="text" 
-                                       class="form-control" 
-                                       readonly
-                                       name="nombre"
-                                       th:value="${producto.nombre}">
-                            </div>
-
+                            <input type="text" 
+                                   class="form-control" 
+                                   readonly
+                                   name="nombre"
+                                   th:value="${producto.nombre}">
                         </div>
-                    </div>
-                    <div class="text-center container boton">
-                        <button type="submit" class="btn btn-primary">Eliminar</button>
-                    </div>
-                    <div class=" text-center container mb-3 boton-v">
-                        <button type="submit" class="btn btn-primary">Volver</button>
-                    </div>
 
-                </form>
-            </div>
-            <div th:if="${error != null}" class="card text-white bg-danger mb-3 mensajeError" >
-                <div class="card-body">
-                    <h5 class="card-title">Error </h5>
-                    <p class="card-text" th:text="${error}"></p>
+                    </div>
                 </div>
-            </div>
-            <div th:if="${exito != null}" class="card text-white bg-success mb-3 mt-3 mensajeExito" >
-                <div class="card-body">
-                    <h5 class="card-title">El producto Se elimino Correctamente!</h5>
-                    <p class="card-text" th:text="${exito}"></p>
+                <div class="text-center container boton">
+                    <button type="submit" class="btn btn-primary">Eliminar</button>
                 </div>
+                <div class=" text-center container mb-3 boton-v">
+                    <button type="submit" class="btn btn-primary">Volver</button>
+                </div>
+
+            </form>
+        </div>
+        <div th:if="${error != null}" class="card text-white bg-danger mb-3 mensajeError" >
+            <div class="card-body">
+                <h5 class="card-title">Error </h5>
+                <p class="card-text" th:text="${error}"></p>
             </div>
-        </main>
+        </div>
+        <div th:if="${exito != null}" class="card text-white bg-success mb-3 mt-3 mensajeExito" >
+            <div class="card-body">
+                <h5 class="card-title">El producto Se elimino Correctamente!</h5>
+                <p class="card-text" th:text="${exito}"></p>
+            </div>
+        </div>
+
         <footer th:replace= "/fragments/footer :: footer"> </footer>
 
         <!-- JavaScript Bundle with Popper -->
