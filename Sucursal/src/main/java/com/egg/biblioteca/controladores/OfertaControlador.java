@@ -1,11 +1,9 @@
 package com.egg.biblioteca.controladores;
 
 import com.egg.biblioteca.entidades.Oferta;
-
 import com.egg.biblioteca.excepciones.MiException;
 import com.egg.biblioteca.servicios.OfertaServicio;
 import com.egg.biblioteca.util.reportes.OfertaExporterPDF;
-
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -24,7 +22,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 @Controller

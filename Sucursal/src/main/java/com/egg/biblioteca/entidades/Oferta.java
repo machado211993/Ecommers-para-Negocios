@@ -31,7 +31,7 @@ public class Oferta {
     @Getter
     @Setter
     public Imagen imagen;
-    //queremos que cuando la noticia se registre en el sistema se guarde la fecha de alta 
+    //queremos que cuando la OFERTA se registre en el sistema se guarde la fecha de alta 
     //por lo tanto vamos a crear un atributo del tipo date 
     @Temporal(TemporalType.DATE)
     @Getter

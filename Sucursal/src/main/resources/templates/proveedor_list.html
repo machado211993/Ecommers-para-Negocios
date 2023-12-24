@@ -13,8 +13,7 @@
                     <tr>
                         <th scope="col">Id del Proveedor</th>
                         <th scope="col">Nombre del Proveedor</th>
-                        <th scope="col" sec:authorize="hasRole('ADMIN')" colspan="2" >Acciones</th>
-
+                        <th scope="col" colspan="3">Acciones</th>
                     </tr>
                 </thead>
                 <tbody th:each="proveedor : ${proveedores}"> 

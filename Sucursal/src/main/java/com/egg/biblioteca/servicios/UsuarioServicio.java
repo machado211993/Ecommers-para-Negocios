@@ -79,7 +79,7 @@ public class UsuarioServicio implements UserDetailsService {
             Imagen imagen = imagenServicio.actualizar(archivo, idImagen);
 
             usuario.setImagen(imagen);
-
+            
             usuarioRepositorio.save(usuario);
         }
 

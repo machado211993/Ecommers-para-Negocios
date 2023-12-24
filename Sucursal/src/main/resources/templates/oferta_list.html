@@ -14,7 +14,7 @@
                         <th scope="col">Nombre Oferta</th>
                         <th scope="col">Precio Oferta</th>
                         <th scope="col">contenido</th>
-                        <th scope="col">Alta Oferta</th>
+                        <th scope="col" style="width: 15%" >Alta Oferta</th>
                         <th scope="col" colspan="3">Acciones</th>
 
                     </tr>
@@ -30,11 +30,11 @@
 
 
                         <td>
-                            <a  th:href= "@{/oferta/modificar/__${oferta.idOferta}__}"><i class="fas fa-feather-alt"></i> Modificar Oferta </a>
+                            <a  th:href= "@{/oferta/modificar/__${oferta.idOferta}__}" sec:authorize="hasRole('ADMIN')"><i class="fas fa-feather-alt"></i> Modificar Oferta </a>
 
                         </td>
                         <td>
-                            <a  th:href= "@{/oferta/eliminar/__${oferta.idOferta}__}"><i class="fas fa-feather-alt"></i> Eliminar Oferta </a>
+                            <a  th:href= "@{/oferta/eliminar/__${oferta.idOferta}__}" sec:authorize="hasRole('ADMIN')"><i class="fas fa-feather-alt"></i> Eliminar Oferta </a>
 
                         </td>
                         <td>
