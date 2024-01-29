@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace= "/fragments/head :: head"> </head>
+    <body>
+
+        <nav 
+            th:replace= "/fragments/navbar :: nav">    
+        </nav>
+        <div class="container-fluid m-5 contenedor">
+
+            <form class="formulario" action="/producto/registro" method="POST" enctype="multipart/form-data">
+
+                <div th:if="${error != null}" class="card text-white bg-danger mb-3 mensajeError" >
+                    <div class="card-body">
+                        <h5 class="card-title">Error 👎</h5>
+                        <p class="card-text" th:text="${error}"></p>
+                    </div>
+                </div>
+                <div th:if="${exito != null}" class="card text-white bg-success mb-3 mt-3 mensajeExito" >
+                    <div class="card-body">
+                        <h5 class="card-title">Exito!</h5>
+                        <p class="card-text" th:text="${exito}"></p>
+                    </div>
+                </div>
+                <label class="mb-2">Cargar Producto</label> 
+                <div class="form-group my-3">
+
+                    <input type="text" class="form-control" name="codigo" placeholder="Codigo del Producto">
+                </div>
+                <div class="form-group my-3">
+                    <input type="text" class="form-control" name="nombre" placeholder="Nombre del Producto">
+                </div>
+
+                <div class="form-group my-3">
+                    <input type="number" class="form-control" name="precio" placeholder="Precio del Producto">
+                </div>
+
+                <div class="form-group my-3">
+                    <input type="file" class="form-control" name="archivo">
+                </div>
+
+                <div class="form-group my-3">
+
+                    <select name="idProveedor">
+
+                        <option>Seleccionar Proveedor</option>
+
+                        <option th:each="proveedor : ${proveedores}"
+                                th:value="${proveedor.idProveedor}"
+                                th:text="${proveedor.nombre}"
+                                />
+                    </select>
+                </div>
+                <div class="form-group my-3">
+                    <select name="idRubro">  
+                        <option>Seleccionar Rubro</option>
+                        <option th:each="rubro : ${rubros}"
+                                th:value="${rubro.idRubro}" 
+                                th:text="${rubro.nombre}"
+                                />
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-primary mt-3 botones">Guardar</button>
+            </form>
+
+
+            <section class=" text-center container">
+                <div class="row mt-3">
+                    <div class="divVolver">
+                        <a th:href="@{/}" class="btn btn-secondary my-2 botonVolver botones">Volver</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <footer th:replace= "/fragments/footer :: footer"> </footer>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    </body>
+</html>

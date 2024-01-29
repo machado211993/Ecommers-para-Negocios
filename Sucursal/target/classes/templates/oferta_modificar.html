@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+   <head th:replace= "/fragments/head :: head"> </head>
+    <body>
+        <nav 
+            th:replace= "/fragments/navbar :: nav">    
+        </nav>
+        <div class="container-fluid m-5 contenedor">
+
+            <form class="formulario" th:action="@{/oferta/modificar/__${oferta.idOferta}__}" method="POST" enctype="multipart/form-data">
+
+                <input hidden th:value="${idOferta}" name="idOferta">
+
+                <div class="form-group my-3">
+                    <label class="mb-2">Modificar Ofertas</label> 
+
+                    <input th:value="${oferta.nombreOferta}" type="text" class="form-control" name="nombreOferta" placeholder="Nombre">
+                </div>
+                <div class="form-group my-3">
+                    <label class="mb-2">Precio</label> 
+
+                    <input th:value="${oferta.precio}" type="text" class="form-control" name="precio" placeholder="Precio">
+                </div>
+
+
+                <div class="form-group my-3">
+                    <label class="mb-2">Imagen</label> 
+                    <input  type="file" class="form-control" name="archivo" placeholder="Imagen del producto">
+                </div>
+
+                <button type="submit" class="btn btn-primary mt-3 botones">Actualizar</button>
+
+
+                <div th:if="${exito}!=null" class="card text-white bg-success mb-3 mt-3 mensajeExito" >
+                    <div class="card-body">
+                        <h5 class="card-title">Exito 👍</h5>
+                        <p class="card-text" th:text="${exito}"></p>
+                    </div>
+                </div>
+                <div th:if="${error}!=null" class="card text-white bg-danger mb-3 mensajeError" >
+                    <div class="card-body">
+                        <h5 class="card-title">Error 👎</h5>
+                        <p class="card-text" th:text="${error}"></p>
+                    </div>
+                </div>
+                <section class=" text-center container">
+                    <div class="row mt-3">
+                        <div class="divVolver">
+                            <a th:href="@{/index}" class="btn btn-secondary my-2 botonVolver botones">Volver</a>
+                        </div>
+                    </div>
+                </section>
+            </form>
+
+        </div>
+
+        <footer th:replace= "/fragments/footer :: footer"> </footer>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    </body>
+</html>
