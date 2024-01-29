@@ -16,6 +16,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -150,13 +151,22 @@ public class PortalControlador {
 
     }
 
-    @GetMapping("/listarUsuarios")  //lista que devuelve usuarios a la vista usuario list. 
-    public String listarUsuarios(ModelMap modelo) {
-
-        List<Usuario> usuarios = usuarioServicio.listarUsuarios();
+//    @GetMapping("/listarUsuarios")  //lista que devuelve usuarios a la vista usuario list. 
+//    public String listarUsuarios(ModelMap modelo, @Param("palabraClave") String palabraClave)  {
+//        List<Usuario> usuarios = usuarioServicio.listAll(palabraClave);
+//        List<Usuario> usuarios = usuarioServicio.listarUsuarios();
+//        modelo.addAttribute("usuarios", usuarios);
+//        modelo.addAttribute("palabraClave", palabraClave);
+//        return "usuario_list";
+//
+//    }
+    //funcionalidad para busqueda personaliza en tabla de clientes 
+    @GetMapping("/listarUsuarios")
+    public String listar(ModelMap modelo, @Param("palabraClave") String palabraClave) {
+        List<Usuario> usuarios = usuarioServicio.listAll(palabraClave);
         modelo.addAttribute("usuarios", usuarios);
+        modelo.addAttribute("palabraClave", palabraClave);
         return "usuario_list";
-
     }
 
     //funcionalidad para devolver productoServicio imagen 

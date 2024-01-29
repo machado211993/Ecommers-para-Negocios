@@ -1,6 +1,7 @@
 package com.egg.biblioteca.servicios;
 
 import com.egg.biblioteca.entidades.Imagen;
+import com.egg.biblioteca.entidades.Producto;
 import com.egg.biblioteca.entidades.Usuario;
 import com.egg.biblioteca.enumeraciones.Rol;
 import com.egg.biblioteca.excepciones.MiException;
@@ -9,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -79,7 +79,7 @@ public class UsuarioServicio implements UserDetailsService {
             Imagen imagen = imagenServicio.actualizar(archivo, idImagen);
 
             usuario.setImagen(imagen);
-            
+
             usuarioRepositorio.save(usuario);
         }
 
@@ -102,6 +102,16 @@ public class UsuarioServicio implements UserDetailsService {
         usuarios = usuarioRepositorio.findAll();
 
         return usuarios;
+
+    }
+
+    //FUNCIONALIDAD PARA FILTROS DE PRODUCTOS (busqueda)
+    public List<Usuario> listAll(String palabraClave) {
+        if (palabraClave != null) {
+            return usuarioRepositorio.findAll(palabraClave);
+        }
+
+        return usuarioRepositorio.findAll();
     }
 
     @Transactional

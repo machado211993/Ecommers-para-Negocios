@@ -77,7 +77,7 @@ public class ProductoControlador {
         return "index.html";
     }
 
-    //PREGUNTAR
+    //PREGUNTAR  sobre la lista de productos productos productos 
     @GetMapping("/lista")
     public String listar(ModelMap modelo, @Param("palabraClave") String palabraClave) {
         List<Producto> productos = productoServicio.listAll(palabraClave);

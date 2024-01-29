@@ -1,6 +1,8 @@
 package com.egg.biblioteca.controladores;
 
 import com.egg.biblioteca.entidades.Oferta;
+import com.egg.biblioteca.entidades.Producto;
+
 import com.egg.biblioteca.excepciones.MiException;
 import com.egg.biblioteca.servicios.OfertaServicio;
 import com.egg.biblioteca.util.reportes.OfertaExporterPDF;
@@ -11,6 +13,7 @@ import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -50,15 +53,26 @@ public class OfertaControlador {
 
     }
 
+//    @GetMapping("/lista")
+//    public String listar(ModelMap modelo) {
+//
+//        List<Oferta> ofertas = ofertaServicio.listarOfertas();
+//
+//        modelo.addAttribute("ofertas", ofertas);
+//
+//        return "oferta_list.html";
+//    }
+    
+      //funcionalidad para busqueda personalizada de ofertas 
     @GetMapping("/lista")
-    public String listar(ModelMap modelo) {
-
-        List<Oferta> ofertas = ofertaServicio.listarOfertas();
-
+    public String listar(ModelMap modelo, @Param("palabraClave") String palabraClave) {
+        List<Oferta> ofertas = ofertaServicio.listAll(palabraClave);
         modelo.addAttribute("ofertas", ofertas);
-
-        return "oferta_list.html";
+        modelo.addAttribute("palabraClave", palabraClave);
+        return "oferta_list";
     }
+
+
 
     @GetMapping("/modificar/{idOferta}")
     public String modificar(@PathVariable String idOferta, ModelMap modelo) {

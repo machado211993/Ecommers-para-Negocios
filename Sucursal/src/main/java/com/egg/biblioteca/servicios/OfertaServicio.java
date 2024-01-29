@@ -2,6 +2,7 @@ package com.egg.biblioteca.servicios;
 
 import com.egg.biblioteca.entidades.Imagen;
 import com.egg.biblioteca.entidades.Oferta;
+import com.egg.biblioteca.entidades.Usuario;
 import com.egg.biblioteca.excepciones.MiException;
 import com.egg.biblioteca.repositorios.OfertaRepositorio;
 import java.util.ArrayList;
@@ -48,6 +49,15 @@ public class OfertaServicio {
 
         return ofertas;
     }
+    //FUNCIONALIDAD PARA FILTROS DE OFERTAS (busqueda)
+
+    public List<Oferta> listAll(String palabraClave) {
+        if (palabraClave != null) {
+            return ofertaRepositorio.findAll(palabraClave);
+        }
+
+        return ofertaRepositorio.findAll();
+    }
 
     @Transactional //se pasa el idOferta porq se necesita en modificarOferta
     public void modificarOferta(MultipartFile archivo, String nombreOferta, String precio, String idOferta) throws MiException {
@@ -74,7 +84,7 @@ public class OfertaServicio {
         }
     }
 
-    public Oferta getOne(String idOferta) { 
+    public Oferta getOne(String idOferta) {
         return ofertaRepositorio.getOne(idOferta); //conseguir uno
     }
 
@@ -104,10 +114,9 @@ public class OfertaServicio {
         if (precio.isEmpty() || precio == null) {
             throw new MiException("el precio no puede ser nulo o estar vacio");
         }
-          if (idOferta.isEmpty() || idOferta == null) {
+        if (idOferta.isEmpty() || idOferta == null) {
             throw new MiException("el id no puede ser nulo o estar vacio");
         }
-
 
     }
 }
