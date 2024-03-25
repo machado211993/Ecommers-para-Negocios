@@ -38,7 +38,7 @@ public class ImagenControlador {
         return new ResponseEntity<>(imagen, headers, HttpStatus.OK);
     }
 
-    @GetMapping("/listar") //para listar todas las noticias en una vista
+    @GetMapping("/listar") //para listar todas las iamgenes en una vista
     public String listar(ModelMap modelo) {
         List<Imagen> imagenes = imagenServicio.listarTodos(); //creo la lista y le añado todo lo del servicio imagen
         modelo.put("imagenes", imagenes); //agregar atributo //put poner

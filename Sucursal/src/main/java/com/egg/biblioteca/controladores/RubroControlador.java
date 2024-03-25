@@ -23,9 +23,9 @@ public class RubroControlador {
     @Autowired
     private RubroServicio rubroServicio;
 
-    @GetMapping("/registrar") //localhost:8080/autor/registrar
+    @GetMapping("/registrar") //localhost:8080/rubro/registrar
     public String registrar() {
-        return "rubro_form.html"; //editorial form 
+        return "rubro_form.html"; //rubro form
     }
 
     @PostMapping("/registro")

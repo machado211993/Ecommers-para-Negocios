@@ -1,8 +1,6 @@
 package com.egg.biblioteca.controladores;
 
 import com.egg.biblioteca.entidades.Oferta;
-import com.egg.biblioteca.entidades.Producto;
-
 import com.egg.biblioteca.excepciones.MiException;
 import com.egg.biblioteca.servicios.OfertaServicio;
 import com.egg.biblioteca.util.reportes.OfertaExporterPDF;
@@ -34,17 +32,18 @@ public class OfertaControlador {
     @Autowired
     private OfertaServicio ofertaServicio;
 
-    @GetMapping("/registrar")
-    public String registrar(ModelMap modelo) {
+    @GetMapping("/registrar") 
+    public String registrar(ModelMap modelo) {  //metodo registro formulario
         return "oferta_form";
 
     }
 
-    @PostMapping("/registro")
+    @PostMapping("/registro") //metodo registrado 
     public String registro(@RequestParam(required = false) String nombreOferta, @RequestParam String precio, @RequestParam MultipartFile archivo, ModelMap modelo) {
         try {
             ofertaServicio.crearOferta(archivo, nombreOferta, precio);
             modelo.put("exito", "la oferta fue cargada correctamente");
+            
         } catch (MiException ex) {
             modelo.put("error", ex.getMessage());
             return "oferta_form";
@@ -62,8 +61,7 @@ public class OfertaControlador {
 //
 //        return "oferta_list.html";
 //    }
-    
-      //funcionalidad para busqueda personalizada de ofertas 
+    //funcionalidad para busqueda personalizada de ofertas 
     @GetMapping("/lista")
     public String listar(ModelMap modelo, @Param("palabraClave") String palabraClave) {
         List<Oferta> ofertas = ofertaServicio.listAll(palabraClave);
@@ -71,8 +69,6 @@ public class OfertaControlador {
         modelo.addAttribute("palabraClave", palabraClave);
         return "oferta_list";
     }
-
-
 
     @GetMapping("/modificar/{idOferta}")
     public String modificar(@PathVariable String idOferta, ModelMap modelo) {

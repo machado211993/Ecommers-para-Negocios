@@ -5,7 +5,6 @@ import com.egg.biblioteca.entidades.Producto;
 import com.egg.biblioteca.entidades.Usuario;
 import com.egg.biblioteca.servicios.OfertaServicio;
 import com.egg.biblioteca.servicios.ProductoServicio;
-
 import com.egg.biblioteca.servicios.UsuarioServicio;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +12,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;

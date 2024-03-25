@@ -2,7 +2,6 @@ package com.egg.biblioteca.servicios;
 
 import com.egg.biblioteca.entidades.Imagen;
 import com.egg.biblioteca.entidades.Oferta;
-import com.egg.biblioteca.entidades.Usuario;
 import com.egg.biblioteca.excepciones.MiException;
 import com.egg.biblioteca.repositorios.OfertaRepositorio;
 import java.util.ArrayList;
