@@ -1,3 +1,3 @@
-FROM openjdk:19-jdk-alpine
-COPY target/Sucursales-0.0.1-SNAPSHOT.jar java-app.jar
-ENTRYPOINT [ "java", "-jar", "app.jar", "-Dserver.port=10917" ]
+FROM openjdk:19
+ADD ./docker-spring-boot.jar docker-spring-boot.jar
+ENTRYPOINT ["java", "-jar", "docker-spring-boot.jar" ]
