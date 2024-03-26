@@ -16,7 +16,6 @@ com\egg\biblioteca\repositorios\ImagenRepositorio.class
 com\egg\biblioteca\entidades\Producto.class
 com\egg\biblioteca\repositorios\OfertaRepositorio.class
 com\egg\biblioteca\controladores\Controlador.class
-com\egg\biblioteca\controladores\PortalControlador.class
 com\egg\biblioteca\servicios\UsuarioServicio.class
 com\egg\biblioteca\controladores\FooterControlador.class
 com\egg\biblioteca\util\reportes\ProductoExporterPDF.class
