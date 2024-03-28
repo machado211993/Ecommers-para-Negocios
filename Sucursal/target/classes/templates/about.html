@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+    <head th:replace= "/fragments/head :: head"> </head>
+    <body id="bodyAbout">
+        <div class="container">
+            <nav 
+                th:replace= "/fragments/navbar :: nav">    
+            </nav>
+
+
+            <header id="headerAbout">
+                <h1>Despensa la Alcancia</h1>
+            </header>
+
+            <section id="sectionAbout">
+                <h2 id="h2About">What is Spring Boot?</h2>
+                <p>
+                    Spring Boot is an extension of the Spring framework that simplifies the process of building production-ready applications with Java.
+                    It provides a convention-over-configuration approach and eliminates the need for boilerplate code, allowing developers to focus on business logic.
+                </p>
+            </section>
+
+            <section>
+                <h2 id="h2About">Main Features</h2>
+                <ul>
+                    <li>Embedded web server support (Tomcat, Jetty, or Undertow)</li>
+                    <li>Auto-configuration for various Spring projects</li>
+                    <li>Opinionated defaults for application setup</li>
+                    <li>Production-ready metrics, health checks, and more</li>
+                    <li>Integrated security features</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2 id="h2About">Getting Started</h2>
+                <p>
+                    To get started with Spring Boot, you can use the Spring Initializr to scaffold your project or include the Spring Boot Starter dependencies
+                    in your existing project. Refer to the official documentation for detailed guides and tutorials.
+                </p>
+                <p>
+                    Official Documentation: <a href="https://docs.spring.io/spring-boot/docs/current/reference/html/index.html" target="_blank">https://docs.spring.io/spring-boot/docs/current/reference/html/index.html</a>
+                </p>
+            </section>
+
+            <section>
+                <h2 id="h2About">Community and Support</h2>
+                <p id="pAbout">
+                    Spring Boot has a thriving community, and you can find support on forums, GitHub repositories, and other community channels.
+                    Engage with the community to share your experiences, ask questions, and stay updated on the latest developments.
+                </p>
+            </section>
+
+            <footer th:replace= "/fragments/footer :: footer"> </footer>
+         
+            <!-- JavaScript Bundle with Popper -->
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+            <!-- Minified JS carousel -->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+            <!-- Compiled and minified Bootstrap JavaScript  carousel-->
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
+            
+            <script src="/js/ofertas.js" ></script>
+        </div>
+    </body>
+
+</html>
