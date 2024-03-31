@@ -1,7 +1,7 @@
 { pkgs ? import <nixpkgs> {} }:
 
 let
-  java = pkgs.openjdk19;
+  java = pkgs.openjdk11;
   maven = pkgs.maven;
 in
 
