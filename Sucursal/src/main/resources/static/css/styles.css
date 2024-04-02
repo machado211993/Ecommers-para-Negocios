@@ -8,12 +8,16 @@
     margin: auto;
 }
 
-.mensajeExito,
-.mensajeError {
-    width: 80%; /* Ajustado para que sea más responsive */
-    max-width: 300px; /* Agregado un máximo para evitar que el mensaje sea demasiado ancho */
-    margin: auto;
-    text-align: center;
+.mensajeExito{
+  width: 20%;
+  margin: auto;
+  text-align: center;
+}
+
+.mensajeError{
+  width: 20%;
+  margin: auto;
+  text-align: center;
 }
 
 .formulario {
@@ -173,4 +177,80 @@
     height: auto; /* Permite que la altura se ajuste automáticamente */
     max-height: 200px; /* Establece la altura máxima deseada */
 }
+
+
+body{
+  background-image: url(../img/background.jpg);
+  background-size: cover;
+  background-repeat: repeat;
+  font-family: 'Numans', sans-serif;
+
+  display: grid;
+  min-height: 100vh;
+  grid-template-rows: auto 1fr auto;
+
+}
+
+
+
+/* Establecer un tamaño fijo para el footer */
+footer {
+  height: 100px; /* Puedes ajustar la altura según tus necesidades */
+  background-color: darkgrey; /* Color de fondo del footer */
+  color: #fff; /* Color del texto en el footer */
+
+
+  text-align: center; /* Alineación del contenido en el centro */
+  padding: 20px; /* Espaciado interior del footer */
+
+  margin-top: auto;
+}
+
+/* Opcional: Establecer un tamaño mínimo y máximo para el footer */
+footer {
+  min-height: 100px; /* Altura mínima */
+
+
+  max-height: 150px; /* Altura máxima */
+
+
+  overflow: auto; /* Agregar barra de desplazamiento vertical si el contenido es demasiado grande */
+}
+
+/* Opcional: Establecer un tamaño mínimo y máximo para el footer */
+footer {
+  min-height: 100px; /* Altura mínima */
+
+
+  max-height: 150px; /* Altura máxima */
+
+
+  overflow: auto; /* Agregar barra de desplazamiento vertical si el contenido es demasiado grande */
+}
+
+/*estilo para about (footer)*/
+#bodyAbout{
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+
+#headerAbout {
+  text-align: center;
+  background-color: pink;
+  color: white;
+  padding: 10px;
+}
+
+#sectionAbout {
+  margin: 20px 0;
+}
+
+#h2About {
+  color: #36A2EB;
+}
+
+#pAbout {
+  line-height: 1.6;
+}
+
 
