@@ -137,35 +137,18 @@
             </div>
             
             <header>      
-                
                 <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                    <!-- Indicators-->
-                    <!--  <ol class="carousel-indicators" >
-                          <th:block th:each="oferta : ${ofertas}">
-                              <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                              
-                          </th:block>
-                      </ol>-->
-
                     <!-- Wrapper for slides -->
+                    
                     <div class="carousel-inner">
-                        <div class="item active"  th:each="oferta : ${ofertas}">
-                            <th:block>
-                                <img  th:src="@{/oferta/imagen/__${oferta.idOferta}__}" alt="">
-                            </th:block>
+                        <div class="item active">
+                            <img th:src="@{/oferta/imagen/__${ofertas[0].idOferta}__}" alt=""> <!-- Mostrando la primera imagen -->
                         </div>
-                        <div class="item active" th:each="oferta : ${ofertas}">
-                            <th:block>
-                                <img th:src="@{/oferta/imagen/__${oferta.idOferta}__}" alt="">
-                            </th:block>
-                        </div>
-                        <div class="item" th:each="oferta : ${ofertas}">
-                            <th:block>
-                                <img th:src="@{/oferta/imagen/__${oferta.idOferta}__}" alt="">
-                            </th:block>
+                        <div class="item" th:each="oferta, iterStat : ${ofertas}" th:if="${not iterStat.first}">
+                            <img th:src="@{/oferta/imagen/__${oferta.idOferta}__}" alt=""> <!-- Mostrando el resto de las imágenes -->
                         </div>
                     </div>
-
+            
                     <!-- Controls -->
                     <a class="left carousel-control" href="#myCarousel" data-slide="prev">
                         <span class="glyphicon glyphicon-chevron-left"></span>
@@ -176,7 +159,33 @@
                         <span class="sr-only">Next</span>
                     </a>
                 </div>
+            
+                <style>
+                    /* Estilos para hacer el carousel responsivo y de tamaño más pequeño */
+                    #myCarousel {
+                        max-width: 600px; /* Ajusta el ancho máximo según tus necesidades */
+                        margin: 0 auto; /* Centra el carousel horizontalmente */
+                    }
+            
+                    .carousel-inner .item img {
+                        width: 100%; /* Las imágenes ocuparán todo el ancho del carousel */
+                        height: auto; /* Altura automática para mantener la proporción de aspecto */
+                    }
+                </style>
+            
+                <script>
+                    $(document).ready(function(){
+                        // Inicia el carousel
+                        $('#myCarousel').carousel();
+            
+                        // Configura el intervalo de cambio de imágenes (en milisegundos)
+                        $('#myCarousel').carousel({
+                            interval: 3000 // Cambia cada 3 segundos
+                        });
+                    });
+                </script>
             </header>
+            
             <!-- <section>
                  <div class="d-flex justify-content-center align-items-center flex-wrap"  style="width: 100%;" >
                      <div class="card m-2 shadow" style="width: 18rem; height: 400px" th:each="oferta : ${ofertas}" >

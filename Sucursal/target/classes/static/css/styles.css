@@ -110,6 +110,67 @@
     }
 }
 
+/*resposividad del nav*/
+/* Estilos base del nav */
+.navBar {
+    background-color: #333;
+  }
+  
+  .navBar .containerImg {
+    padding: 10px; /* Ajusta el espaciado según necesites */
+  }
+  
+  .navBar .navbar-toggler {
+    border-color: white; /* Cambia el color del botón de hamburguesa */
+  }
+  
+  .navBar .navbar-toggler-icon {
+    background-color: white; /* Cambia el color del icono de hamburguesa */
+  }
+  
+  .navBar .navbar-nav .nav-item .nav-link {
+    color: white;
+  }
+  
+  .navBar .navbar-nav .nav-item .nav-link:hover {
+    background-color: #555;
+  }
+  
+  /* Estilos para hacerlo responsivo */
+  @media screen and (max-width: 768px) {
+    .navBar .navbar-nav {
+      margin-top: 10px; /* Ajusta el espaciado según necesites */
+    }
+  
+    .navBar .navbar-nav .nav-item {
+      text-align: center; /* Centra los elementos del nav */
+      margin: 5px 0; /* Ajusta el espaciado según necesites */
+    }
+  
+    .navBar .navbar-nav .nav-item .dropdown-menu {
+      position: static; /* Ajusta el posicionamiento del menú desplegable */
+      float: none;
+      width: 100%;
+      background-color: #333;
+      box-shadow: none;
+    }
+  
+    .navBar .navbar-nav .nav-item .dropdown-menu .dropdown-item {
+      padding: 10px 15px; /* Ajusta el espaciado según necesites */
+      color: white;
+    }
+  
+    .navBar .navbar-nav .nav-item .dropdown-menu .dropdown-divider {
+      margin: 5px 0; /* Ajusta el espaciado según necesites */
+      border-color: #555;
+    }
+  }
+  
 
-
+/* Estilo para hacer que las imágenes de las cards sean más pequeñas */
+#productos .card-img-top {
+    max-width: 100%; /* Ajusta el ancho máximo de la imagen */
+    height: auto; /* Permite que la altura se ajuste automáticamente */
+    max-height: 200px; /* Establece la altura máxima deseada */
+}
 
