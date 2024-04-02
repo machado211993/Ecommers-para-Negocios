@@ -387,3 +387,50 @@ body {
     }
 }
 
+/*css 2 resposivo*/ 
+.containerImg {
+    width: 40%; /* Puedes considerar cambiar esto a porcentaje */
+}
+
+.logo {
+    width: 100%; /* Esto ya es receptivo */
+    margin: auto;
+}
+
+.mensajeExito, .mensajeError {
+    width: 80%; /* Cambiado a porcentaje */
+    margin: auto;
+    text-align: center;
+}
+
+.formulario {
+    width: 80%; /* Cambiado a porcentaje */
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.divVolver {
+    width: 80%; /* Cambiado a porcentaje */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
+/* Estilos generales */
+
+/* Media query para pantallas pequeñas */
+@media only screen and (max-width: 600px) {
+    .containerImg {
+        width: 80%; /* Ajusta el ancho para pantallas pequeñas */
+    }
+
+    .formulario, .divVolver {
+        width: 100%; /* Ocupa todo el ancho en pantallas pequeñas */
+    }
+
+    .mensajeExito, .mensajeError {
+        width: 100%; /* Ocupa todo el ancho en pantallas pequeñas */
+    }
+}
