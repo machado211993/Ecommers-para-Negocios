@@ -46,7 +46,7 @@
 }
 
 .header {
-    background-image: url(../img/zoompalacio.jpg);
+    background-image: url(../img/background.jpg);
     background-size: cover;
     font-style: inherit;
     color: white;
@@ -84,93 +84,6 @@
     max-width: 200px; /* Agregado un máximo para evitar que el botón sea demasiado ancho */
 }
 
-/* Media queries para dispositivos pequeños */
-@media (max-width: 768px) {
-    .formulario,
-    .divVolver,
-    .tituloBiblioteca,
-    .contenedorMain {
-        width: 90%; /* Reducido el ancho para dispositivos más pequeños */
-        max-width: 400px; /* Agregado un máximo para evitar que los elementos sean demasiado anchos */
-    }
-
-    .header {
-        height: 200px; /* Reducido el tamaño del header para dispositivos más pequeños */
-    }
-}
-
-/* Media queries para dispositivos extra pequeños */
-@media (max-width: 480px) {
-    .formulario,
-    .divVolver,
-    .tituloBiblioteca,
-    .contenedorMain {
-        width: 90%; /* Reducido el ancho para dispositivos extra pequeños */
-        max-width: 300px; /* Agregado un máximo para evitar que los elementos sean demasiado anchos */
-    }
-
-    .header {
-        height: 150px; /* Reducido el tamaño del header para dispositivos extra pequeños */
-    }
-}
-
-/*resposividad del nav*/
-/* Estilos base del nav */
-.navBar {
-    background-color: #333;
-  }
-  
-  .navBar .containerImg {
-    padding: 10px; /* Ajusta el espaciado según necesites */
-  }
-  
-  .navBar .navbar-toggler {
-    border-color: white; /* Cambia el color del botón de hamburguesa */
-  }
-  
-  .navBar .navbar-toggler-icon {
-    background-color: white; /* Cambia el color del icono de hamburguesa */
-  }
-  
-  .navBar .navbar-nav .nav-item .nav-link {
-    color: white;
-  }
-  
-  .navBar .navbar-nav .nav-item .nav-link:hover {
-    background-color: #555;
-  }
-  
-  /* Estilos para hacerlo responsivo */
-  @media screen and (max-width: 768px) {
-    .navBar .navbar-nav {
-      margin-top: 10px; /* Ajusta el espaciado según necesites */
-    }
-  
-    .navBar .navbar-nav .nav-item {
-      text-align: center; /* Centra los elementos del nav */
-      margin: 5px 0; /* Ajusta el espaciado según necesites */
-    }
-  
-    .navBar .navbar-nav .nav-item .dropdown-menu {
-      position: static; /* Ajusta el posicionamiento del menú desplegable */
-      float: none;
-      width: 100%;
-      background-color: #333;
-      box-shadow: none;
-    }
-  
-    .navBar .navbar-nav .nav-item .dropdown-menu .dropdown-item {
-      padding: 10px 15px; /* Ajusta el espaciado según necesites */
-      color: white;
-    }
-  
-    .navBar .navbar-nav .nav-item .dropdown-menu .dropdown-divider {
-      margin: 5px 0; /* Ajusta el espaciado según necesites */
-      border-color: #555;
-    }
-  }
-  
-
 /* Estilo para hacer que las imágenes de las cards sean más pequeñas */
 #productos .card-img-top {
     max-width: 100%; /* Ajusta el ancho máximo de la imagen */
@@ -182,50 +95,12 @@
 body{
   background-image: url(../img/background.jpg);
   background-size: cover;
-  background-repeat: repeat;
+  background-repeat: no-repeat;
   font-family: 'Numans', sans-serif;
-
   display: grid;
   min-height: 100vh;
   grid-template-rows: auto 1fr auto;
 
-}
-
-
-
-/* Establecer un tamaño fijo para el footer */
-footer {
-  height: 100px; /* Puedes ajustar la altura según tus necesidades */
-  background-color: darkgrey; /* Color de fondo del footer */
-  color: #fff; /* Color del texto en el footer */
-
-
-  text-align: center; /* Alineación del contenido en el centro */
-  padding: 20px; /* Espaciado interior del footer */
-
-  margin-top: auto;
-}
-
-/* Opcional: Establecer un tamaño mínimo y máximo para el footer */
-footer {
-  min-height: 100px; /* Altura mínima */
-
-
-  max-height: 150px; /* Altura máxima */
-
-
-  overflow: auto; /* Agregar barra de desplazamiento vertical si el contenido es demasiado grande */
-}
-
-/* Opcional: Establecer un tamaño mínimo y máximo para el footer */
-footer {
-  min-height: 100px; /* Altura mínima */
-
-
-  max-height: 150px; /* Altura máxima */
-
-
-  overflow: auto; /* Agregar barra de desplazamiento vertical si el contenido es demasiado grande */
 }
 
 /*estilo para about (footer)*/
@@ -253,4 +128,36 @@ footer {
   line-height: 1.6;
 }
 
+nav {
+  background-color: antiquewhite; /* Cambia el color a tu preferencia */
+}
+footer{
+  background-color:antiquewhite;
+}
+/* Estilos generales */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
 
+/* Estilos específicos para dispositivos de pantalla pequeña (hasta 600px) */
+@media screen and (max-width: 600px) {
+  body {
+      font-size: 14px; /* Tamaño de fuente más pequeño para pantallas pequeñas */
+  }
+}
+
+/* Estilos específicos para dispositivos de pantalla mediana (de 601px a 1024px) */
+@media screen and (min-width: 601px) and (max-width: 1024px) {
+  body {
+      font-size: 16px; /* Tamaño de fuente un poco más grande para pantallas medianas */
+  }
+}
+
+/* Estilos específicos para dispositivos de pantalla grande (más de 1024px) */
+@media screen and (min-width: 1025px) {
+  body {
+      font-size: 18px; /* Tamaño de fuente más grande para pantallas grandes */
+  }
+}
