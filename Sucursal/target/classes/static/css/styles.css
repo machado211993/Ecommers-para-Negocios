@@ -130,7 +130,7 @@ body{
 
 
 footer{
-  background-color:antiquewhite;
+  background-color:darkgray;
 }
 /* Estilos para el footer */
 .footer {
@@ -172,27 +172,50 @@ body {
   }
 }
 
-/* Estilos para la barra de navegación */
-.navbar {
-  position: fixed; /* Fijar la barra de navegación en la parte superior */
-  top: 0;
-  left: 0;
-  width: 100%; /* Opcional: hacer que la barra de navegación ocupe todo el ancho */
-  background-color: #333; /* Color de fondo de la barra de navegación */
-  color: #fff; /* Color del texto */
-  text-align: center; /* Centrar el contenido de la barra de navegación */
-  padding: 10px 0; /* Espaciado interno */
+/* Estilos base para la barra de navegación */
+nav {
+  background-color: darkgrey;
 }
 
-/* Estilos para los elementos de la barra de navegación */
-.navbar a {
-  color: #36A2EB; /* Color del texto de los enlaces */
-  text-decoration: none; /* Quitar subrayado de los enlaces */
-  padding: 10px 20px; /* Espaciado interno de los enlaces */
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  text-align: justify; /* Centrar los elementos de navegación */
 }
 
-/* Estilos para el contenedor de los elementos de la barra de navegación para justificarlos */
-.navbar .navbar-content {
-  display: flex;
-  justify-content: center;
+nav ul li {
+  display: inline-block; /* Cambiado a inline-block para que los elementos se coloquen uno al lado del otro */
+  margin-right: 10px; /* Espacio entre elementos de navegación */
+}
+
+nav ul li:last-child {
+  margin-right: 0; /* Eliminar el margen derecho del último elemento de navegación */
+}
+
+nav ul li a {
+  display: block; /* Cambiado a block para ocupar todo el ancho del contenedor */
+  padding: 10px 0; /* Ajustar el relleno para que sea más fácil de hacer clic en dispositivos móviles */
+  color: white;
+  text-decoration: none;
+}
+
+/* Estilos para dispositivos móviles */
+@media screen and (max-width: 768px) {
+  nav ul {
+    text-align: left; /* Alinear los elementos de navegación a la izquierda */
+  }
+  
+  nav ul li {
+    display: block; /* Cambiado a block para que cada elemento ocupe una línea */
+    margin-right: 0; /* Eliminar el margen derecho */
+    margin-bottom: 10px; /* Espacio entre elementos de navegación */
+  }
+}
+
+/* Ejemplo de media query para dispositivos móviles */
+@media (max-width: 768px) {
+  .carousel-item {
+    height: 200px; /* Por ejemplo, ajusta la altura del carousel para dispositivos móviles */
+  }
 }

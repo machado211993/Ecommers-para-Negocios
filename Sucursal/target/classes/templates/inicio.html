@@ -15,8 +15,9 @@
                         <img th:src="@{/img/alcancia.png}" width="100px" height="auto" alt="Img logo egg">
                     </a>
                 </div>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    Menú <span class="navbar-toggler-icon"></span>
+                   
                 </button>
                 <div class="collapse navbar-collapse elementosNav" id="navbarNavDropdown">
                     <ul class="navbar-nav ms-auto elementos">
@@ -101,7 +102,7 @@
             
                         <li class="nav-item">
                             <a class="nav-link " th:if="${session.usuariosession == null}" href="/registrar" id="navbarDropdown" role="button" aria-expanded="false">
-                                Registrate!
+                                REGISTRATE!
                             </a>
             
                         </li>
