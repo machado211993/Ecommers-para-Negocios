@@ -128,12 +128,22 @@ body{
   line-height: 1.6;
 }
 
-nav {
-  background-color: antiquewhite; /* Cambia el color a tu preferencia */
-}
+
 footer{
   background-color:antiquewhite;
 }
+/* Estilos para el footer */
+.footer {
+  position: fixed; /* Fijar el footer en la posición */
+  left: 0;
+  bottom: 0;
+  width: 100%; /* Opcional: hacer que el footer ocupe todo el ancho */
+  background-color: #333; /* Color de fondo */
+  color: #fff; /* Color del texto */
+  text-align: justify; /* Centrar el contenido del footer */
+  padding: 20px; /* Espaciado interno */
+}
+
 /* Estilos generales */
 body {
   font-family: Arial, sans-serif;
@@ -160,4 +170,29 @@ body {
   body {
       font-size: 18px; /* Tamaño de fuente más grande para pantallas grandes */
   }
+}
+
+/* Estilos para la barra de navegación */
+.navbar {
+  position: fixed; /* Fijar la barra de navegación en la parte superior */
+  top: 0;
+  left: 0;
+  width: 100%; /* Opcional: hacer que la barra de navegación ocupe todo el ancho */
+  background-color: #333; /* Color de fondo de la barra de navegación */
+  color: #fff; /* Color del texto */
+  text-align: center; /* Centrar el contenido de la barra de navegación */
+  padding: 10px 0; /* Espaciado interno */
+}
+
+/* Estilos para los elementos de la barra de navegación */
+.navbar a {
+  color: #36A2EB; /* Color del texto de los enlaces */
+  text-decoration: none; /* Quitar subrayado de los enlaces */
+  padding: 10px 20px; /* Espaciado interno de los enlaces */
+}
+
+/* Estilos para el contenedor de los elementos de la barra de navegación para justificarlos */
+.navbar .navbar-content {
+  display: flex;
+  justify-content: center;
 }
