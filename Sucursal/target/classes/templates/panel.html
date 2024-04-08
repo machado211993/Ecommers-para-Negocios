@@ -128,24 +128,8 @@
                     <p class="card-text" th:text="${error}"></p>
                 </div>
             </div>
-
-            <!-- <header class="header">
-                 <section class="contenedorMain">
-                     <div class="tituloBiblioteca">
-                         <a class="navbar-brand" href="#">Productos</a>
-                     </div>
-                     <div class="container contenedorLibros">
-                         <p class="tituloLibros">Encontrá todos los Productos Aquí y saca tu Presupuesto!</p>
-                         <a class="btn btn-xl mt-2 boton" th:href="@{/producto/lista}"   >Sacar presupuesto</a>
-                     </div>
-                     <div class="bg-circle-1 bg-circle"></div>
-                     <div class="bg-circle-2 bg-circle"></div>
-                     <div class="bg-circle-3 bg-circle"></div>
-                     <div class="bg-circle-4 bg-circle"></div>
-                 </section>
-             </header>-->
-
-             <header>
+   
+            <header>
                 <div id="myCarousel" class="carousel slide mb-6" data-bs-ride="carousel" data-bs-interval="3000">
                     <div class="carousel-indicators">
                         <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-label="Slide 1" aria-current="true"></button>
@@ -155,18 +139,16 @@
                     </div>
                     <div class="carousel-inner">
                         <div th:classappend="${iterStat.first} ? 'carousel-item active' : 'carousel-item'" th:each="oferta, iterStat : ${ofertas}">
-                            <!-- Utiliza la clase img-fluid para que la imagen se ajuste al carousel -->
+                            <!-- Utiliza la clase img-fluid para que la imagen se ajuste al carrusel -->
                             <img th:src="@{/oferta/imagen/__${oferta.idOferta}__}" alt="" class="d-block w-100 img-fluid">
-                            <div class="container">
-                                <div class="carousel-caption text-start">
-                                    
-                                    <p class="opacity-75"></p>
-                                    <p><a class="btn btn-lg btn-primary float-start" th:href="@{/oferta/lista}">Listado ofertas</a></p>
-                                    <p><a class="btn btn-lg btn-primary float-end" th:href="@{/producto/lista}">Listado productos</a></p>
-                                </div>
+                            <div class="carousel-caption text-start">
+                                <p class="opacity-75"></p>
+                                <p><a class="btn btn-lg btn-primary float-start" th:href="@{/oferta/lista}">Listado ofertas</a></p>
+                                <p><a class="btn btn-lg btn-primary float-end" th:href="@{/producto/lista}">Listado productos</a></p>
                             </div>
                         </div>
                     </div>
+                    <!-- Botones de control -->
                     <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Previous</span>
@@ -179,6 +161,7 @@
                 
                 
             </header>
+            
 
             <!-- <section>
                  <div class="d-flex justify-content-center align-items-center flex-wrap"  style="width: 100%;" >
@@ -204,7 +187,7 @@
                 </div>
             </section>
                 
-            </section>
+            
 
             <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
                 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;" >
@@ -276,12 +259,13 @@
                     </a>
                 </div>
             </footer>
+             
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
             <!-- Minified JS carousel -->
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
             <!-- Compiled and minified Bootstrap JavaScript  carousel-->
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
-      
+ 
 </div>
 
     </body>
