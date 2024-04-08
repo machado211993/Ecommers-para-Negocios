@@ -222,3 +222,18 @@ nav ul li a {
   }
 }
 
+.card {
+  width: auto; /* Establece el ancho deseado para las tarjetas */
+  height: auto; /* Establece la altura deseada para las tarjetas */
+}
+
+.card-body {
+  height: 100%; /* Ocupa toda la altura de la tarjeta */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card-img-top {
+  height: 100%; /* Establece la altura de la imagen dentro de la tarjeta */
+}
