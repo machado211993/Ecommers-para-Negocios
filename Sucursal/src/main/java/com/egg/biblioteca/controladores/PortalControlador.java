@@ -4,6 +4,7 @@ import com.egg.biblioteca.entidades.Oferta;
 import com.egg.biblioteca.entidades.Producto;
 import com.egg.biblioteca.entidades.Usuario;
 import com.egg.biblioteca.excepciones.MiException;
+import com.egg.biblioteca.repositorios.ProductoRepositorio;
 import com.egg.biblioteca.servicios.OfertaServicio;
 import com.egg.biblioteca.servicios.ProductoServicio;
 import com.egg.biblioteca.servicios.UsuarioServicio;
@@ -16,6 +17,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.repository.query.Param;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -28,6 +31,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.data.domain.Pageable;
 
 @Controller
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST})
@@ -40,7 +44,8 @@ public class PortalControlador {
     private ProductoServicio productoServicio;
     @Autowired
     private OfertaServicio ofertaServicio;
-
+    @Autowired
+    private ProductoRepositorio productoRepositorio;
     
     @GetMapping("/registrar")  //registro cliente formulario
     public String registrar() {
@@ -261,6 +266,13 @@ public class PortalControlador {
         UsuarioExporterPDF exporter = new UsuarioExporterPDF(usuarios);
         exporter.exportar(response);
 
+    }
+
+    @GetMapping("/paginacion")
+    public Page<Producto> getProductosPaginados(@RequestParam(defaultValue = "0") int page,
+                                                 @RequestParam(defaultValue = "10") int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return productoRepositorio.findAll(pageable);
     }
 
 }
