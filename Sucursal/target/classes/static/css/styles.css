@@ -222,10 +222,7 @@ nav ul li a {
   }
 }
 
-.card {
-  width: auto; /* Establece el ancho deseado para las tarjetas */
-  height: auto; /* Establece la altura deseada para las tarjetas */
-}
+
 
 .card-body {
   height: 100%; /* Ocupa toda la altura de la tarjeta */
@@ -236,4 +233,12 @@ nav ul li a {
 
 .card-img-top {
   height: 100%; /* Establece la altura de la imagen dentro de la tarjeta */
+}
+.card {
+  width: 300px; /* Ancho fijo para todas las tarjetas */
+  height: 200px; /* Altura fija para todas las tarjetas */
+  border: 1px solid #ccc; /* Bordes para las tarjetas */
+  border-radius: 5px; /* Bordes redondeados */
+  margin: 10px; /* Margen entre las tarjetas */
+  display: inline-block; /* Mostrar como elementos en línea */
 }
