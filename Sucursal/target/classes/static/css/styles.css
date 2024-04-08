@@ -88,7 +88,9 @@
 #productos .card-img-top {
     max-width: 100%; /* Ajusta el ancho máximo de la imagen */
     height: auto; /* Permite que la altura se ajuste automáticamente */
-    max-height: 200px; /* Establece la altura máxima deseada */
+    max-height: 300px; /* Establece la altura máxima deseada */
+    padding: 0%;/* Reduce el espaciado interno de la tarjeta */
+    margin-bottom: 0%; /* Reduce el margen inferior de la tarjeta */
 }
 
 
@@ -219,3 +221,4 @@ nav ul li a {
     height: 200px; /* Por ejemplo, ajusta la altura del carousel para dispositivos móviles */
   }
 }
+
