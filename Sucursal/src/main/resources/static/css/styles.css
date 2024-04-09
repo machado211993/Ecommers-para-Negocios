@@ -242,3 +242,34 @@ nav ul li a {
   margin: 10px; /* Margen entre las tarjetas */
   display: inline-block; /* Mostrar como elementos en línea */
 }
+
+.conte_turno {
+  max-width: 500px;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.titulo_eliTurno {
+  color: #333;
+}
+
+.boton {
+  margin-top: 20px;
+}
+
+.boton button {
+  width: 150px;
+}
+
+@media (max-width: 576px) {
+  .conte_turno {
+      padding: 10px;
+  }
+  
+  .titulo_eliTurno {
+      font-size: 1.5rem;
+  }
+}

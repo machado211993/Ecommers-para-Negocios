@@ -1,10 +1,10 @@
 package com.egg.biblioteca.controladores;
 
-import com.egg.biblioteca.entidades.Proveedor;
+
 import com.egg.biblioteca.entidades.Rubro;
 import com.egg.biblioteca.excepciones.MiException;
 import com.egg.biblioteca.servicios.RubroServicio;
-import java.util.ArrayList;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;

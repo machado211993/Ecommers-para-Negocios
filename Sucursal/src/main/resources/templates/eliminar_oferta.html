@@ -114,47 +114,28 @@
             </div>
         </nav>
 
-        <h3 class="titulo_eliTurno mb-4">Eliminar Oferta</h3>
-        <div class="conte_turno m-auto">
-            <form class=" conte_turno " th:action="@{/oferta/eliminado/__${oferta.idOferta}__}" method="POST">
-
-                <div class="conte_dtsTurno">
-                    <label class="justify-content-center "><strong>ID de la Oferta</strong></label>
-                    <div class="col-sm-12">
-                        <input type="text" 
-                               readonly 
-                               class="form-control-plaintext justify-content-center" 
-                               name="idOferta" 
-                               th:value="${oferta.idOferta}">
-                    </div>
+        
+        <div class="container">
+            <form class="conte_turno card p-4" th:action="@{/oferta/eliminado/__${oferta.idOferta}__}" method="POST">
+                <h3 class="titulo_eliTurno text-center mb-4">Eliminar Oferta</h3>
+                
+                <div class="form-group">
+                    <label><strong>ID de la Oferta</strong></label>
+                    <input type="text" readonly class="form-control" name="idOferta" th:value="${oferta.idOferta}">
                 </div>
-
-                <div class="form-group cont-eliTurno ">
-                    <div class="form-group m-auto titulo_eliTurno "> 
-                        <label><strong>DATOS DE LA OFERTA</strong></label> 
-
-
-                        <div class="form-group m-auto my-3"> 
-                            <label class="mb-2">Nombre de la Oferta</label> 
-
-                            <input type="text" 
-                                   class="form-control" 
-                                   readonly
-                                   name="nombreOferta"
-                                   th:value="${oferta.nombreOferta}">
-                        </div>
-
-                    </div>
+                
+                <div class="form-group">
+                    <label><strong>Nombre de la Oferta</strong></label>
+                    <input type="text" class="form-control" readonly name="nombreOferta" th:value="${oferta.nombreOferta}">
                 </div>
-                <div class="text-center container boton">
-                    <button type="submit" class="btn btn-primary">Eliminar Oferta</button>
+                
+                <div class="text-center mt-4">
+                    <button type="submit" class="btn btn-danger mr-2">Eliminar Oferta</button>
+                    <button type="button" onclick="window.history.back()" class="btn btn-secondary">Volver</button>
                 </div>
-                <div class=" text-center container mb-3 boton-v">
-                    <button type="submit" class="btn btn-primary">Volver</button>
-                </div>
-
             </form>
         </div>
+        
         <div th:if="${error != null}" class="card text-white bg-danger mb-3 mensajeError" >
             <div class="card-body">
                 <h5 class="card-title">Error </h5>
