@@ -114,8 +114,20 @@
                 </ul>
             </div>
         </nav>
+        <div th:if="${exito}!=null" class="card text-white bg-success mb-3 mt-3 mensajeExito" >
+            <div class="card-body">
+                <h5 class="card-title">Exito ð</h5>
+                <p class="card-text" th:text="${exito}"></p>
+            </div>
+        </div>
+        <div th:if="${error}!=null" class="card text-white bg-danger mb-3 mensajeError" >
+            <div class="card-body">
+                <h5 class="card-title">Error ð</h5>
+                <p class="card-text" th:text="${error}"></p>
+            </div>
+        </div>
 
-        <div class="container m-5" >
+        <div class="table-responsive">
             <form class="form-inline" th:action="@{/oferta/lista}">
                 <div class="form-group mb-2">
                     <label>Filtrar : </label>  
@@ -131,14 +143,14 @@
                 <a th:href="@{/oferta/exportarPDF}" class="btn btn-secondary mb-2 mx-2"> Exportar PDF </a>
             </form>
 
-            <table class="table table-dark" id="small-table">
-                <thead>
+            <table class="table table-striped table-hover" id="small-table">
+                <thead class="thead-dark">
                     <tr>
                         <th scope="col">Nombre Oferta</th>
                         <th scope="col">Precio Oferta</th>
                         <th scope="col">contenido</th>
                         <th scope="col" style="width: 15%" >Alta Oferta</th>
-                        <th scope="col" colspan="3">Acciones</th>
+                        <th scope="col" colspan="3" style="text-align: center;">Acciones</th>
 
                     </tr>
                 </thead>
@@ -146,8 +158,10 @@
                     <tr>
                         <th scope="row" th:text="${oferta.nombreOferta}"></th>
                         <td th:text="${oferta.precio}"></td>
-                        <td 
-                            <a><img class="logo" th:src="@{/oferta/imagen/__${oferta.idOferta}__}" ></a>
+                        <td>
+                            <a th:href="@{/oferta/imagen/__${oferta.idOferta}__}">
+                                <img class="logo" th:src="@{/oferta/imagen/__${oferta.idOferta}__}" />
+                            </a>
                         </td>
                         <td th:text="${oferta.altaOferta}"></td>
 
@@ -169,29 +183,9 @@
 
                 </tbody>
             </table>
-            <section class="py-5 text-center container">
-                <div class="row py-lg-5">
-                    <div class="col-lg-6 col-md-8 mx-auto">
-                        <a th:href="@{/inicio}" class="btn btn-primary my-2">Volver</a>
-
-                    </div>
-                </div>
-            </section>
-
-            <div th:if="${exito}!=null" class="card text-white bg-success mb-3 mt-3 mensajeExito" >
-                <div class="card-body">
-                    <h5 class="card-title">Exito ð</h5>
-                    <p class="card-text" th:text="${exito}"></p>
-                </div>
+            <div class="py-5 text-center container">
+                <a th:href="@{/inicio}" class="btn btn-primary">Volver</a>
             </div>
-            <div th:if="${error}!=null" class="card text-white bg-danger mb-3 mensajeError" >
-                <div class="card-body">
-                    <h5 class="card-title">Error ð</h5>
-                    <p class="card-text" th:text="${error}"></p>
-                </div>
-            </div>
-
-
 
         </div>
         <!--<div class="d-flex justify-content-center align-items-center flex-wrap"  style="width: 100%;">

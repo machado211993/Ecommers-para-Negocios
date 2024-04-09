@@ -114,6 +114,18 @@
                 </ul>
             </div>
         </nav>
+        <div th:if="${exito}!=null" class="card text-white bg-success mb-3 mt-3 mensajeExito" >
+            <div class="card-body">
+                <h5 class="card-title">Exito ð</h5>
+                <p class="card-text" th:text="${exito}"></p>
+            </div>
+        </div>
+        <div th:if="${error}!=null" class="card text-white bg-danger mb-3 mensajeError" >
+            <div class="card-body">
+                <h5 class="card-title">Error ð</h5>
+                <p class="card-text" th:text="${error}"></p>
+            </div>
+        </div>
         <div class="container m-5" >
             <form class="form-inline" th:action="@{/listarUsuarios}">
                 <div class="form-group mb-2">
@@ -138,7 +150,7 @@
                         <th scope="col">Foto de Perfil</th>
                         <th scope="col">Rol</th>
                         <th scope="col">Cambiar Rol</th>
-                        <th scope="col" colspan="3">Acciones</th>
+                        <th scope="col" colspan="3" style="text-align: center;">Acciones</th>
 
                     </tr>
                 </thead>
@@ -169,18 +181,7 @@
                 </tbody>
             </table>
 
-            <div th:if="${exito}!=null" class="card text-white bg-success mb-3 mt-3 mensajeExito" >
-                <div class="card-body">
-                    <h5 class="card-title">Exito ð</h5>
-                    <p class="card-text" th:text="${exito}"></p>
-                </div>
-            </div>
-            <div th:if="${error}!=null" class="card text-white bg-danger mb-3 mensajeError" >
-                <div class="card-body">
-                    <h5 class="card-title">Error ð</h5>
-                    <p class="card-text" th:text="${error}"></p>
-                </div>
-            </div>
+
 
             <section class="py-5 text-center container">
                 <div class="row py-lg-5">

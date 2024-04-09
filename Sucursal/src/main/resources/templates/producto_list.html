@@ -113,8 +113,22 @@
                 </ul>
             </div>
         </nav>
-        <div class="table-responsive" >
+        <div th:if="${exito}!=null" class="card text-white bg-success mb-3 mt-3 mensajeExito" >
+            <div class="card-body">
+                <h5 class="card-title">Exito ð</h5>
+                <p class="card-text" th:text="${exito}"></p>
+            </div>
+        </div>
+        <div th:if="${error}!=null" class="card text-white bg-danger mb-3 mensajeError" >
+            <div class="card-body">
+                <h5 class="card-title">Error ð</h5>
+                <p class="card-text" th:text="${error}"></p>
+            </div>
+        </div>
+
+        <div class="table-responsive">
             <form class="form-inline" th:action="@{/producto/lista}">
+        
                 <div class="form-group mb-2">
                     <label>Filtrar : </label>  
                 </div>
@@ -128,17 +142,18 @@
 
                 <a th:href="@{/producto/exportarPDF}" class="btn btn-secondary mb-2 mx-2"> Exportar PDF </a>
             </form>
-            <table class="table table-dark" id="small-table">
-                <thead>
+            <table class="table table-striped table-hover" id="small-table">
+                <thead class="thead-dark">
                     <tr>
                         <!-- <th scope="col">id del producto</th>-->
                         <th scope="col">codigo</th>
                         <th scope="col">Nombre</th>
-                        <th scope="col">contenido</th>
+                        <th scope="col">contenido </th>
                         <th scope="col">Precios</th>
                         <th scope="col">Proveedor</th>
-                        <th scope="col">Rubros</th>
-                        <th scope="col" colspan="3" >Acciones</th>
+                        <th scope="col" >Rubros</th>
+                        <th scope="col" colspan="3" style="text-align: center;">Acciones</th>
+
 
                     </tr>
                 </thead>
@@ -147,8 +162,10 @@
                         <!-- <th scope="row" th:text="${producto.idProducto}"></th>-->
                         <td th:text="${producto.codigo}"></td>
                         <td th:text="${producto.nombre}"></td>
-                        <td 
-                            <a><img class="logo" th:src="@{/producto/imagen/__${producto.idProducto}__}" ></a>
+                        <td>
+                            <a th:href="@{/producto/imagen/__${producto.idProducto}__}">
+                                <img class="logo" th:src="@{/producto/imagen/__${producto.idProducto}__}" />
+                            </a>
                         </td>
                         <td th:text="${producto.precio}"></td>
                         <td th:text="${producto.proveedor.nombre}"></td>
@@ -165,35 +182,15 @@
                         </td>
 
                     </tr>
-
-
                 </tbody>
+               
             </table>
 
-
-            <div th:if="${exito}!=null" class="card text-white bg-success mb-3 mt-3 mensajeExito" >
-                <div class="card-body">
-                    <h5 class="card-title">Exito ð</h5>
-                    <p class="card-text" th:text="${exito}"></p>
-                </div>
+            <div class="py-5 text-center container">
+                <a th:href="@{/inicio}" class="btn btn-primary">Volver</a>
             </div>
-            <div th:if="${error}!=null" class="card text-white bg-danger mb-3 mensajeError" >
-                <div class="card-body">
-                    <h5 class="card-title">Error ð</h5>
-                    <p class="card-text" th:text="${error}"></p>
-                </div>
-            </div>
-
-            <section class="py-5 text-center container">
-                <div class="row py-lg-5">
-                    <div class="col-lg-6 col-md-8 mx-auto">
-                        <a th:href="@{/inicio}" class="btn btn-primary my-2">Volver</a>
-                        </p>
-                    </div>
-                </div>
-            </section>
-
         </div>
+
         <!--<div class="d-flex justify-content-center align-items-center flex-wrap"  style="width: 100%;">
             <div class="card m-2 shadow" style="width: 18rem; height: 400px" th:each="producto : ${productos}">
                 <img th:src="@{/producto/imagen/__${producto.idProducto}__}" alt="imagen-producto" class="card-img-top m-auto" style="width: 10rem; height:250px ">

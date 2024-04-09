@@ -273,3 +273,28 @@ nav ul li a {
       font-size: 1.5rem;
   }
 }
+
+#small-table {
+  width: 90%; /* Cambia el ancho de la tabla según lo necesites */
+  margin: auto; /* Centra la tabla en el contenedor */
+}
+
+.table-responsive {
+  overflow-x: auto; /* Añade una barra de desplazamiento horizontal si la tabla es demasiado ancha */
+}
+
+.form-inline {
+  margin-bottom: 10px; /* Espacio entre el formulario y la tabla */
+}
+
+.btn {
+  margin-right: 5px; /* Espacio entre los botones */
+}
+
+.logo {
+  max-width: 50px; /* Tamaño máximo de la imagen del producto */
+}
+
+.py-5 {
+  padding-top: 3rem; /* Añade espacio entre el final de la tabla y el botón "Volver" */
+}
