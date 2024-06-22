@@ -58,13 +58,17 @@ public class ProductoControlador {
     @PostMapping("/registro")
     public String registro(@RequestParam(required = false) String codigo, @RequestParam String nombre,
             @RequestParam(required = false) Integer precio, @RequestParam String idProveedor,
-            @RequestParam String idRubro, ModelMap modelo, @RequestParam(required = false) MultipartFile archivo) {
+            @RequestParam String idRubro, ModelMap modelo, @RequestParam(required = false) MultipartFile archivo,  @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
         try {
 
             productoServicio.crearProducto(archivo, idRubro, codigo, nombre, precio, idProveedor, idRubro);
 
             modelo.put("exito", "El Producto fue cargado correctamente!");
-
+            Page<Producto> productosPage = productoServicio.listarPaginacion(page, size);
+            modelo.addAttribute("productos", productosPage.getContent());
+            modelo.addAttribute("pageable", productosPage);
+            
         } catch (MiException ex) {
             List<Proveedor> proveedores = proveedorServicio.listarProveedores();
             List<Rubro> rubros = rubroServicio.listarRubros();

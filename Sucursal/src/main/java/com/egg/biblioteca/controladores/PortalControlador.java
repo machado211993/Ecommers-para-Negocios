@@ -34,7 +34,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.data.domain.Pageable;
 
 @Controller
-@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST})
+@CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST })
 @RequestMapping("/")
 public class PortalControlador {
 
@@ -46,16 +46,15 @@ public class PortalControlador {
     private OfertaServicio ofertaServicio;
     @Autowired
     private ProductoRepositorio productoRepositorio;
-    
-    @GetMapping("/registrar")  //registro cliente formulario
+
+    @GetMapping("/registrar") // registro cliente formulario
     public String registrar() {
         return "registro.html";
     }
 
-    
-    @PostMapping("/registro") //cliente registrado
+    @PostMapping("/registro") // cliente registrado
     public String registro(@RequestParam String nombre, @RequestParam String email, @RequestParam String password,
-            String password2, ModelMap modelo, MultipartFile archivo,  @RequestParam(defaultValue = "0") int page,
+            String password2, ModelMap modelo, MultipartFile archivo, @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size) {
 
         try {
@@ -77,7 +76,7 @@ public class PortalControlador {
 
     }
 
-    //login
+    // login
     @GetMapping("/login")
     public String login(@RequestParam(required = false) String error, ModelMap modelo) {
 
@@ -88,18 +87,18 @@ public class PortalControlador {
         return "login.html";
     }
 
-    //inicio 
+    // inicio
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @GetMapping("/inicio")
-    public String inicio(HttpSession session, ModelMap modelo,  @RequestParam(defaultValue = "0") int page,
-    @RequestParam(defaultValue = "10") int size) {
+    public String inicio(HttpSession session, ModelMap modelo, @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
 
         Usuario logueado = (Usuario) session.getAttribute("usuariosession");
 
         if (logueado.getRol().toString().equals("ADMIN")) {
             return "redirect:/admin/dashboard";
         }
-        //LISTADO PARA RECORRER LAS CARTAS EN INICIO Y CAROUSEL
+        // LISTADO PARA RECORRER LAS CARTAS EN INICIO Y CAROUSEL
         List<Producto> productos = productoServicio.listarProductos();
         modelo.addAttribute("productos", productos);
         List<Oferta> ofertas = ofertaServicio.listarOfertas();
@@ -108,11 +107,10 @@ public class PortalControlador {
         modelo.addAttribute("productos", productosPage.getContent());
         modelo.addAttribute("pageable", productosPage);
 
-
         return "inicio.html";
     }
 
-    //funcionalidad para modificar cliente EN SESSION
+    // funcionalidad para modificar cliente EN SESSION
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @GetMapping("/perfil")
     public String perfil(ModelMap modelo, HttpSession session) {
@@ -121,7 +119,7 @@ public class PortalControlador {
         return "usuario_modificar.html";
     }
 
-    //funcionalidad para modificar cliente por id 
+    // funcionalidad para modificar cliente por id
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @GetMapping("/modificar/{id}")
     public String modificar(@PathVariable String id, ModelMap modelo) {
@@ -131,10 +129,11 @@ public class PortalControlador {
         return "usuario_modificar.html";
     }
 
-    //funcionalidad para modificar cliente por id
+    // funcionalidad para modificar cliente por id
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @PostMapping("/perfil/{id}")
-    public String actualizar(@RequestParam MultipartFile archivo, @PathVariable String id, @RequestParam String nombre, @RequestParam String email,
+    public String actualizar(@RequestParam MultipartFile archivo, @PathVariable String id, @RequestParam String nombre,
+            @RequestParam String email,
             @RequestParam String password, @RequestParam String password2, ModelMap modelo) {
 
         try {
@@ -154,10 +153,11 @@ public class PortalControlador {
 
     }
 
-    //funcionalidad para devolver productoServicio lista y ofertaServicio lista y usuarioServicio lista EN INDEX
+    // funcionalidad para devolver productoServicio lista y ofertaServicio lista y
+    // usuarioServicio lista EN INDEX
     @GetMapping("/")
     public String listar(ModelMap modelo, @RequestParam(defaultValue = "0") int page,
-    @RequestParam(defaultValue = "10") int size) {
+            @RequestParam(defaultValue = "10") int size) {
         List<Producto> productos = productoServicio.listAll(null);
         modelo.addAttribute("productos", productos);
         List<Oferta> ofertas = ofertaServicio.listarOfertas();
@@ -167,22 +167,23 @@ public class PortalControlador {
         Page<Producto> productosPage = productoServicio.listarPaginacion(page, size);
         modelo.addAttribute("productos", productosPage.getContent());
         modelo.addAttribute("pageable", productosPage);
-        
+
         return "index";
 
     }
-   
 
-//    @GetMapping("/listarUsuarios")  //lista que devuelve usuarios a la vista usuario list. 
-//    public String listarUsuarios(ModelMap modelo, @Param("palabraClave") String palabraClave)  {
-//        List<Usuario> usuarios = usuarioServicio.listAll(palabraClave);
-//        List<Usuario> usuarios = usuarioServicio.listarUsuarios();
-//        modelo.addAttribute("usuarios", usuarios);
-//        modelo.addAttribute("palabraClave", palabraClave);
-//        return "usuario_list";
-//
-//    }
-    //funcionalidad para busqueda personaliza en tabla de clientes 
+    // @GetMapping("/listarUsuarios") //lista que devuelve usuarios a la vista
+    // usuario list.
+    // public String listarUsuarios(ModelMap modelo, @Param("palabraClave") String
+    // palabraClave) {
+    // List<Usuario> usuarios = usuarioServicio.listAll(palabraClave);
+    // List<Usuario> usuarios = usuarioServicio.listarUsuarios();
+    // modelo.addAttribute("usuarios", usuarios);
+    // modelo.addAttribute("palabraClave", palabraClave);
+    // return "usuario_list";
+    //
+    // }
+    // funcionalidad para busqueda personaliza en tabla de clientes
     @GetMapping("/listarUsuarios")
     public String listar(ModelMap modelo, @Param("palabraClave") String palabraClave) {
         List<Usuario> usuarios = usuarioServicio.listAll(palabraClave);
@@ -191,80 +192,86 @@ public class PortalControlador {
         return "usuario_list";
     }
 
-    //funcionalidad para devolver productoServicio imagen 
-//    @GetMapping("/{idProducto}")  //INDEX
-//    public ResponseEntity<byte[]> imagenProducto(@PathVariable String idProducto) {
-//
-//        Producto producto = productoServicio.getOne(idProducto);
-//
-//        byte[] imagen = producto.getImagen().getContenido();
-//
-//        HttpHeaders headers = new HttpHeaders();
-//
-//        headers.setContentType(MediaType.IMAGE_JPEG); //se va a recibir una imagen de tipo JPEG
-//
-//        return new ResponseEntity<>(imagen, headers, HttpStatus.OK);
-//    }
-//
-//    //funcionalidad para devolver ofertaServicio imagen
-//    @GetMapping("/{idOferta}") //INDEX
-//    public ResponseEntity<byte[]> imagenOferta(@PathVariable String idOferta) {
-//
-//        Oferta oferta = ofertaServicio.getOne(idOferta);
-//
-//        byte[] imagen = oferta.getImagen().getContenido();
-//
-//        HttpHeaders headers = new HttpHeaders();
-//
-//        headers.setContentType(MediaType.IMAGE_JPEG); //se va a recibir una imagen de tipo JPEG
-//
-//        return new ResponseEntity<>(imagen, headers, HttpStatus.OK);
-//    }
-//    
-//    //funcionalidad para devolver productoServicio imagen
-//    @GetMapping("/inicio/{idProducto}") //EN INICIO
-//    public ResponseEntity<byte[]> imagenProductoo(@PathVariable String idProducto) {
-//
-//        Producto producto = productoServicio.getOne(idProducto);
-//
-//        byte[] imagen = producto.getImagen().getContenido();
-//
-//        HttpHeaders headers = new HttpHeaders();
-//
-//        headers.setContentType(MediaType.IMAGE_JPEG); //se va a recibir una imagen de tipo JPEG
-//
-//        return new ResponseEntity<>(imagen, headers, HttpStatus.OK);
-//    }
-//
-//    funcionalidad para devolver ofertaServicio imagen
-//    @GetMapping("/inicio/{idOferta}") //EN INICIO
-//    public ResponseEntity<byte[]> imagenOfertaa(@PathVariable String idOferta) {
-//
-//        Oferta oferta = ofertaServicio.getOne(idOferta);
-//
-//        byte[] imagen = oferta.getImagen().getContenido();
-//
-//        HttpHeaders headers = new HttpHeaders();
-//
-//        headers.setContentType(MediaType.IMAGE_JPEG); //se va a recibir una imagen de tipo JPEG
-//
-//        return new ResponseEntity<>(imagen, headers, HttpStatus.OK);
-//    }
-    //PARA ELIMINAR
+    // funcionalidad para devolver productoServicio imagen
+    // @GetMapping("/{idProducto}") //INDEX
+    // public ResponseEntity<byte[]> imagenProducto(@PathVariable String idProducto)
+    // {
+    //
+    // Producto producto = productoServicio.getOne(idProducto);
+    //
+    // byte[] imagen = producto.getImagen().getContenido();
+    //
+    // HttpHeaders headers = new HttpHeaders();
+    //
+    // headers.setContentType(MediaType.IMAGE_JPEG); //se va a recibir una imagen de
+    // tipo JPEG
+    //
+    // return new ResponseEntity<>(imagen, headers, HttpStatus.OK);
+    // }
+    //
+    // //funcionalidad para devolver ofertaServicio imagen
+    // @GetMapping("/{idOferta}") //INDEX
+    // public ResponseEntity<byte[]> imagenOferta(@PathVariable String idOferta) {
+    //
+    // Oferta oferta = ofertaServicio.getOne(idOferta);
+    //
+    // byte[] imagen = oferta.getImagen().getContenido();
+    //
+    // HttpHeaders headers = new HttpHeaders();
+    //
+    // headers.setContentType(MediaType.IMAGE_JPEG); //se va a recibir una imagen de
+    // tipo JPEG
+    //
+    // return new ResponseEntity<>(imagen, headers, HttpStatus.OK);
+    // }
+    //
+    // //funcionalidad para devolver productoServicio imagen
+    // @GetMapping("/inicio/{idProducto}") //EN INICIO
+    // public ResponseEntity<byte[]> imagenProductoo(@PathVariable String
+    // idProducto) {
+    //
+    // Producto producto = productoServicio.getOne(idProducto);
+    //
+    // byte[] imagen = producto.getImagen().getContenido();
+    //
+    // HttpHeaders headers = new HttpHeaders();
+    //
+    // headers.setContentType(MediaType.IMAGE_JPEG); //se va a recibir una imagen de
+    // tipo JPEG
+    //
+    // return new ResponseEntity<>(imagen, headers, HttpStatus.OK);
+    // }
+    //
+    // funcionalidad para devolver ofertaServicio imagen
+    // @GetMapping("/inicio/{idOferta}") //EN INICIO
+    // public ResponseEntity<byte[]> imagenOfertaa(@PathVariable String idOferta) {
+    //
+    // Oferta oferta = ofertaServicio.getOne(idOferta);
+    //
+    // byte[] imagen = oferta.getImagen().getContenido();
+    //
+    // HttpHeaders headers = new HttpHeaders();
+    //
+    // headers.setContentType(MediaType.IMAGE_JPEG); //se va a recibir una imagen de
+    // tipo JPEG
+    //
+    // return new ResponseEntity<>(imagen, headers, HttpStatus.OK);
+    // }
+    // PARA ELIMINAR
     @GetMapping("/eliminar/{id}")
-    public String eliminar(@PathVariable String id, ModelMap modelo) { //variable de ruta  
+    public String eliminar(@PathVariable String id, ModelMap modelo) { // variable de ruta
 
         modelo.put("usuario", usuarioServicio.getOne(id));
         return "eliminar_usuario.html";
     }
 
-    //PARA ELIMINAR
+    // PARA ELIMINAR
     @PostMapping("/eliminado/{id}")
     public String eliminado(@PathVariable String id, ModelMap modelo) {
 
         usuarioServicio.borrarPorId(id);
 
-        return "redirect:../listarUsuarios"; //retornar a listarUsuarios
+        return "redirect:../listarUsuarios"; // retornar a listarUsuarios
     }
 
     @GetMapping("/exportarPDF")
@@ -276,11 +283,10 @@ public class PortalControlador {
         String valor = "attachment; filename=Clientes_" + fechaActual + ".pdf";
         response.setHeader(cabecera, valor);
 
-        List<Usuario> usuarios = usuarioServicio.listarUsuarios(); //cargo la lista
+        List<Usuario> usuarios = usuarioServicio.listarUsuarios(); // cargo la lista
         UsuarioExporterPDF exporter = new UsuarioExporterPDF(usuarios);
         exporter.exportar(response);
 
     }
-
 
 }
