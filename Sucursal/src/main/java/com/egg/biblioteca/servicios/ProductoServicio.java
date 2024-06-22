@@ -14,6 +14,9 @@ import java.util.List;
 import java.util.Optional;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -30,7 +33,8 @@ public class ProductoServicio {
     private ImagenServicio imagenServicio;
 
     @Transactional
-    public void crearProducto(MultipartFile archivo, String idProducto, String codigo, String nombre, Integer precio, String idProveedor, String idRubro) throws MiException {
+    public void crearProducto(MultipartFile archivo, String idProducto, String codigo, String nombre, Integer precio,
+            String idProveedor, String idRubro) throws MiException {
 
         validar(archivo, idProducto, codigo, nombre, precio, idProveedor, idRubro);
 
@@ -66,7 +70,7 @@ public class ProductoServicio {
 
         productoRepositorio.save(producto);
     }
-    //funcionalidad para listado de productos
+    // funcionalidad para listado de productos
 
     public List<Producto> listarProductos() {
 
@@ -76,7 +80,7 @@ public class ProductoServicio {
 
         return productos;
     }
-    //FUNCIONALIDAD PARA FILTROS DE PRODUCTOS (busqueda)
+    // FUNCIONALIDAD PARA FILTROS DE PRODUCTOS (busqueda)
 
     public List<Producto> listAll(String palabraClave) {
         if (palabraClave != null) {
@@ -86,13 +90,15 @@ public class ProductoServicio {
         return productoRepositorio.findAll();
     }
 
-//    //funcionalidad para paginacion 
-//    public Page<Producto> findAll(Pageable pageable) {
-//        return productoRepositorio.findAll(pageable);
-//    }
+    /* funcionalidad para paginacion */
+    public Page<Producto> listarPaginacion(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return productoRepositorio.findAll(pageable);
+    }
 
     @Transactional
-    public void modificarProducto(MultipartFile archivo, String idProducto, String codigo, String nombre, Integer precio, String idProveedor, String idRubro) throws MiException {
+    public void modificarProducto(MultipartFile archivo, String idProducto, String codigo, String nombre,
+            Integer precio, String idProveedor, String idRubro) throws MiException {
 
         validar(archivo, idProducto, codigo, nombre, precio, idProveedor, idRubro);
 
@@ -141,16 +147,17 @@ public class ProductoServicio {
     }
 
     public Producto getOne(String idProducto) {
-        return productoRepositorio.getOne(idProducto); //encontrar uno 
+        return productoRepositorio.getOne(idProducto); // encontrar uno
     }
 
-    //eleminar producto
+    // eleminar producto
     @Transactional
     public void borrarPorId(String idProducto) {
         productoRepositorio.deleteById(idProducto);
     }
 
-    private void validar(MultipartFile archivo, String idProducto, String codigo, String nombre, Integer precio, String idProveedor, String idRubro) throws MiException {
+    private void validar(MultipartFile archivo, String idProducto, String codigo, String nombre, Integer precio,
+            String idProveedor, String idRubro) throws MiException {
 
         if (idProducto == null) {
             throw new MiException("el idProducto no puede ser nulo"); //
@@ -177,5 +184,4 @@ public class ProductoServicio {
 
     }
 
-    
 }

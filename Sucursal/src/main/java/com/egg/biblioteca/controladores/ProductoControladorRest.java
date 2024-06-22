@@ -1,4 +1,4 @@
-package com.egg.biblioteca.controladores;
+/*package com.egg.biblioteca.controladores;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -98,4 +98,4 @@ public class ProductoControladorRest {
         productoServicio.borrarPorId(idProducto);
     }
 
-}
+}*/

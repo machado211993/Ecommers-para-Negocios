@@ -16,6 +16,7 @@ import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -43,7 +44,7 @@ public class ProductoControlador {
     @Autowired
     private ProductoRepositorio productoRepositorio;
 
-    @GetMapping("/registrar") //localhost:8080/producto/registrar
+    @GetMapping("/registrar") // localhost:8080/producto/registrar
     public String registrar(ModelMap modelo) {
         List<Proveedor> proveedores = proveedorServicio.listarProveedores();
         List<Rubro> rubros = rubroServicio.listarRubros();
@@ -72,17 +73,31 @@ public class ProductoControlador {
             modelo.addAttribute("rubros", rubros);
             modelo.put("error", ex.getMessage());
 
-            return "producto_form.html";  // volvemos a cargar el formulario. ///libro form 
+            return "producto_form.html"; // volvemos a cargar el formulario. ///libro form
         }
         return "index.html";
     }
 
-    //PREGUNTAR  sobre la lista de productos productos productos 
+    // paginacion
     @GetMapping("/lista")
+    public String listar(ModelMap modelo,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+
+        Page<Producto> productosPage = productoServicio.listarPaginacion(page, size);
+        modelo.addAttribute("productos", productosPage.getContent());
+        modelo.addAttribute("pageable", productosPage);
+
+        return "producto_list";
+    }
+
+    // filtrado
+    @GetMapping("/filtrar")
     public String listar(ModelMap modelo, @Param("palabraClave") String palabraClave) {
         List<Producto> productos = productoServicio.listAll(palabraClave);
         modelo.addAttribute("productos", productos);
         modelo.addAttribute("palabraClave", palabraClave);
+
         return "producto_list";
     }
 
@@ -101,7 +116,8 @@ public class ProductoControlador {
     }
 
     @PostMapping("/modificar/{idProducto}")
-    public String modificar(@PathVariable String idProducto, MultipartFile archivo, String codigo, String nombre, Integer precio, String idProveedor, String idRubro, ModelMap modelo) {
+    public String modificar(@PathVariable String idProducto, MultipartFile archivo, String codigo, String nombre,
+            Integer precio, String idProveedor, String idRubro, ModelMap modelo) {
         try {
             List<Proveedor> proveedores = proveedorServicio.listarProveedores();
             List<Rubro> rubros = rubroServicio.listarRubros();
@@ -127,7 +143,7 @@ public class ProductoControlador {
 
     }
 
-    @GetMapping("/imagen/{idProducto}")  //para devolver imagen como cartas
+    @GetMapping("/imagen/{idProducto}") // para devolver imagen como cartas
     public ResponseEntity<byte[]> imagenProducto(@PathVariable String idProducto) {
 
         Producto producto = productoServicio.getOne(idProducto);
@@ -136,12 +152,12 @@ public class ProductoControlador {
 
         HttpHeaders headers = new HttpHeaders();
 
-        headers.setContentType(MediaType.IMAGE_JPEG); //se va a recibir una imagen de tipo JPEG
+        headers.setContentType(MediaType.IMAGE_JPEG); // se va a recibir una imagen de tipo JPEG
 
         return new ResponseEntity<>(imagen, headers, HttpStatus.OK);
     }
 
-    //PARA ELIMINAR
+    // PARA ELIMINAR
     @GetMapping("/eliminar/{idProducto}")
     public String eliminar(@PathVariable String idProducto, ModelMap modelo) {
 
@@ -149,7 +165,7 @@ public class ProductoControlador {
         return "eliminar_producto.html";
     }
 
-    //PARA ELIMINAR
+    // PARA ELIMINAR
     @PostMapping("/eliminado/{idProducto}")
     public String eliminado(@PathVariable String idProducto, ModelMap modelo) {
 
@@ -158,7 +174,7 @@ public class ProductoControlador {
         return "redirect:../lista";
     }
 
-    //PARA REPORTES PDF  DE PRODUCTOS
+    // PARA REPORTES PDF DE PRODUCTOS
     @GetMapping("/exportarPDF")
     public void exportarListadoDeProductosEnPDF(HttpServletResponse response) throws IOException {
         response.setContentType("application/pdf");
@@ -168,7 +184,7 @@ public class ProductoControlador {
         String valor = "attachment; filename=Clientes_" + fechaActual + ".pdf";
         response.setHeader(cabecera, valor);
 
-        List<Producto> productos = productoServicio.listarProductos(); //cargo la lista
+        List<Producto> productos = productoServicio.listarProductos(); // cargo la lista
         ProductoExporterPDF exporter = new ProductoExporterPDF(productos);
         exporter.exportar(response);
     }

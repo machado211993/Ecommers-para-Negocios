@@ -55,13 +55,16 @@ public class PortalControlador {
     
     @PostMapping("/registro") //cliente registrado
     public String registro(@RequestParam String nombre, @RequestParam String email, @RequestParam String password,
-            String password2, ModelMap modelo, MultipartFile archivo) {
+            String password2, ModelMap modelo, MultipartFile archivo,  @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
 
         try {
             usuarioServicio.registrar(archivo, nombre, email, password, password2);
 
             modelo.put("exito", "Usuario registrado correctamente!");
-
+            Page<Producto> productosPage = productoServicio.listarPaginacion(page, size);
+            modelo.addAttribute("productos", productosPage.getContent());
+            modelo.addAttribute("pageable", productosPage);
             return "index.html";
         } catch (MiException ex) {
 
@@ -88,7 +91,8 @@ public class PortalControlador {
     //inicio 
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @GetMapping("/inicio")
-    public String inicio(HttpSession session, ModelMap modelo) {
+    public String inicio(HttpSession session, ModelMap modelo,  @RequestParam(defaultValue = "0") int page,
+    @RequestParam(defaultValue = "10") int size) {
 
         Usuario logueado = (Usuario) session.getAttribute("usuariosession");
 
@@ -100,6 +104,10 @@ public class PortalControlador {
         modelo.addAttribute("productos", productos);
         List<Oferta> ofertas = ofertaServicio.listarOfertas();
         modelo.addAttribute("ofertas", ofertas);
+        Page<Producto> productosPage = productoServicio.listarPaginacion(page, size);
+        modelo.addAttribute("productos", productosPage.getContent());
+        modelo.addAttribute("pageable", productosPage);
+
 
         return "inicio.html";
     }
@@ -148,16 +156,22 @@ public class PortalControlador {
 
     //funcionalidad para devolver productoServicio lista y ofertaServicio lista y usuarioServicio lista EN INDEX
     @GetMapping("/")
-    public String listar(ModelMap modelo) {
-        List<Producto> productos = productoServicio.listarProductos();
+    public String listar(ModelMap modelo, @RequestParam(defaultValue = "0") int page,
+    @RequestParam(defaultValue = "10") int size) {
+        List<Producto> productos = productoServicio.listAll(null);
         modelo.addAttribute("productos", productos);
         List<Oferta> ofertas = ofertaServicio.listarOfertas();
         modelo.addAttribute("ofertas", ofertas);
         List<Usuario> usuarios = usuarioServicio.listarUsuarios();
         modelo.addAttribute("usuarios", usuarios);
+        Page<Producto> productosPage = productoServicio.listarPaginacion(page, size);
+        modelo.addAttribute("productos", productosPage.getContent());
+        modelo.addAttribute("pageable", productosPage);
+        
         return "index";
 
     }
+   
 
 //    @GetMapping("/listarUsuarios")  //lista que devuelve usuarios a la vista usuario list. 
 //    public String listarUsuarios(ModelMap modelo, @Param("palabraClave") String palabraClave)  {
@@ -268,11 +282,5 @@ public class PortalControlador {
 
     }
 
-    @GetMapping("/paginacion")
-    public Page<Producto> getProductosPaginados(@RequestParam(defaultValue = "0") int page,
-                                                 @RequestParam(defaultValue = "10") int size) {
-        Pageable pageable = PageRequest.of(page, size);
-        return productoRepositorio.findAll(pageable);
-    }
 
 }
