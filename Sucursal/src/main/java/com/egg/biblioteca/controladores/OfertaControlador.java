@@ -32,18 +32,19 @@ public class OfertaControlador {
     @Autowired
     private OfertaServicio ofertaServicio;
 
-    @GetMapping("/registrar") 
-    public String registrar(ModelMap modelo) {  //metodo registro formulario
+    @GetMapping("/registrar")
+    public String registrar(ModelMap modelo) { // metodo registro formulario
         return "oferta_form";
 
     }
 
-    @PostMapping("/registro") //metodo registrado 
-    public String registro(@RequestParam(required = false) String nombreOferta, @RequestParam String precio, @RequestParam MultipartFile archivo, ModelMap modelo) {
+    @PostMapping("/registro") // metodo registrado
+    public String registro(@RequestParam(required = false) String nombreOferta, @RequestParam String precio,
+            @RequestParam MultipartFile archivo, ModelMap modelo) {
         try {
             ofertaServicio.crearOferta(archivo, nombreOferta, precio);
             modelo.put("exito", "la oferta fue cargada correctamente");
-            
+
         } catch (MiException ex) {
             modelo.put("error", ex.getMessage());
             return "oferta_form";
@@ -52,16 +53,16 @@ public class OfertaControlador {
 
     }
 
-//    @GetMapping("/lista")
-//    public String listar(ModelMap modelo) {
-//
-//        List<Oferta> ofertas = ofertaServicio.listarOfertas();
-//
-//        modelo.addAttribute("ofertas", ofertas);
-//
-//        return "oferta_list.html";
-//    }
-    //funcionalidad para busqueda personalizada de ofertas 
+    // @GetMapping("/lista")
+    // public String listar(ModelMap modelo) {
+    //
+    // List<Oferta> ofertas = ofertaServicio.listarOfertas();
+    //
+    // modelo.addAttribute("ofertas", ofertas);
+    //
+    // return "oferta_list.html";
+    // }
+    // funcionalidad para busqueda personalizada de ofertas
     @GetMapping("/lista")
     public String listar(ModelMap modelo, @Param("palabraClave") String palabraClave) {
         List<Oferta> ofertas = ofertaServicio.listAll(palabraClave);
@@ -79,19 +80,20 @@ public class OfertaControlador {
     }
 
     @PostMapping("/modificar/{idOferta}")
-    public String modificar(@PathVariable String idOferta, String nombreOferta, String precio, MultipartFile archivo, ModelMap modelo, Date altaOferta) {
+    public String modificar(@PathVariable String idOferta, String nombreOferta, String precio, MultipartFile archivo,
+            ModelMap modelo, Date altaOferta) {
         try {
             ofertaServicio.modificarOferta(archivo, nombreOferta, precio, idOferta);
 
             return "redirect:../lista";
         } catch (MiException ex) {
             modelo.put("error", ex.getMessage());
-            return "oferta_modificar.html"; //oferta modificar
+            return "oferta_modificar.html"; // oferta modificar
         }
 
     }
 
-    @GetMapping("/imagen/{idOferta}")  //para devolver imagen como cartas
+    @GetMapping("/imagen/{idOferta}") // para devolver imagen como cartas
     public ResponseEntity<byte[]> imagenOferta(@PathVariable String idOferta) {
 
         Oferta oferta = ofertaServicio.getOne(idOferta);
@@ -100,12 +102,12 @@ public class OfertaControlador {
 
         HttpHeaders headers = new HttpHeaders();
 
-        headers.setContentType(MediaType.IMAGE_JPEG); //se va a recibir una imagen de tipo JPEG
+        headers.setContentType(MediaType.IMAGE_JPEG); // se va a recibir una imagen de tipo JPEG
 
         return new ResponseEntity<>(imagen, headers, HttpStatus.OK);
     }
 
-    //PARA ELIMINAR
+    // PARA ELIMINAR
     @GetMapping("/eliminar/{idOferta}")
     public String eliminar(@PathVariable String idOferta, ModelMap modelo) {
 
@@ -113,7 +115,7 @@ public class OfertaControlador {
         return "eliminar_oferta.html";
     }
 
-    //PARA ELIMINAR
+    // PARA ELIMINAR
     @PostMapping("/eliminado/{idOferta}")
     public String eliminado(@PathVariable String idOferta, ModelMap modelo) {
 
@@ -131,7 +133,7 @@ public class OfertaControlador {
         String valor = "attachment; filename=Clientes_" + fechaActual + ".pdf";
         response.setHeader(cabecera, valor);
 
-        List<Oferta> ofertas = ofertaServicio.listarOfertas(); //cargo la lista
+        List<Oferta> ofertas = ofertaServicio.listarOfertas(); // cargo la lista
         OfertaExporterPDF exporter = new OfertaExporterPDF(ofertas);
         exporter.exportar(response);
 

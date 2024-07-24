@@ -41,8 +41,7 @@ public class ProductoControlador {
     private ProveedorServicio proveedorServicio;
     @Autowired
     private RubroServicio rubroServicio;
-    @Autowired
-    private ProductoRepositorio productoRepositorio;
+    
 
     @GetMapping("/registrar") // localhost:8080/producto/registrar
     public String registrar(ModelMap modelo) {

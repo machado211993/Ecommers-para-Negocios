@@ -4,7 +4,6 @@ import com.egg.biblioteca.entidades.Oferta;
 import com.egg.biblioteca.entidades.Producto;
 import com.egg.biblioteca.entidades.Usuario;
 import com.egg.biblioteca.excepciones.MiException;
-import com.egg.biblioteca.repositorios.ProductoRepositorio;
 import com.egg.biblioteca.servicios.OfertaServicio;
 import com.egg.biblioteca.servicios.ProductoServicio;
 import com.egg.biblioteca.servicios.UsuarioServicio;
@@ -18,7 +17,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.repository.query.Param;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -31,7 +29,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.data.domain.Pageable;
 
 @Controller
 @CrossOrigin(origins = "*", methods = { RequestMethod.GET, RequestMethod.POST })
@@ -44,8 +41,6 @@ public class PortalControlador {
     private ProductoServicio productoServicio;
     @Autowired
     private OfertaServicio ofertaServicio;
-    @Autowired
-    private ProductoRepositorio productoRepositorio;
 
     @GetMapping("/registrar") // registro cliente formulario
     public String registrar() {
@@ -76,7 +71,6 @@ public class PortalControlador {
 
     }
 
-    // login
     @GetMapping("/login")
     public String login(@RequestParam(required = false) String error, ModelMap modelo) {
 
@@ -172,18 +166,6 @@ public class PortalControlador {
 
     }
 
-    // @GetMapping("/listarUsuarios") //lista que devuelve usuarios a la vista
-    // usuario list.
-    // public String listarUsuarios(ModelMap modelo, @Param("palabraClave") String
-    // palabraClave) {
-    // List<Usuario> usuarios = usuarioServicio.listAll(palabraClave);
-    // List<Usuario> usuarios = usuarioServicio.listarUsuarios();
-    // modelo.addAttribute("usuarios", usuarios);
-    // modelo.addAttribute("palabraClave", palabraClave);
-    // return "usuario_list";
-    //
-    // }
-    // funcionalidad para busqueda personaliza en tabla de clientes
     @GetMapping("/listarUsuarios")
     public String listar(ModelMap modelo, @Param("palabraClave") String palabraClave) {
         List<Usuario> usuarios = usuarioServicio.listAll(palabraClave);
@@ -192,71 +174,6 @@ public class PortalControlador {
         return "usuario_list";
     }
 
-    // funcionalidad para devolver productoServicio imagen
-    // @GetMapping("/{idProducto}") //INDEX
-    // public ResponseEntity<byte[]> imagenProducto(@PathVariable String idProducto)
-    // {
-    //
-    // Producto producto = productoServicio.getOne(idProducto);
-    //
-    // byte[] imagen = producto.getImagen().getContenido();
-    //
-    // HttpHeaders headers = new HttpHeaders();
-    //
-    // headers.setContentType(MediaType.IMAGE_JPEG); //se va a recibir una imagen de
-    // tipo JPEG
-    //
-    // return new ResponseEntity<>(imagen, headers, HttpStatus.OK);
-    // }
-    //
-    // //funcionalidad para devolver ofertaServicio imagen
-    // @GetMapping("/{idOferta}") //INDEX
-    // public ResponseEntity<byte[]> imagenOferta(@PathVariable String idOferta) {
-    //
-    // Oferta oferta = ofertaServicio.getOne(idOferta);
-    //
-    // byte[] imagen = oferta.getImagen().getContenido();
-    //
-    // HttpHeaders headers = new HttpHeaders();
-    //
-    // headers.setContentType(MediaType.IMAGE_JPEG); //se va a recibir una imagen de
-    // tipo JPEG
-    //
-    // return new ResponseEntity<>(imagen, headers, HttpStatus.OK);
-    // }
-    //
-    // //funcionalidad para devolver productoServicio imagen
-    // @GetMapping("/inicio/{idProducto}") //EN INICIO
-    // public ResponseEntity<byte[]> imagenProductoo(@PathVariable String
-    // idProducto) {
-    //
-    // Producto producto = productoServicio.getOne(idProducto);
-    //
-    // byte[] imagen = producto.getImagen().getContenido();
-    //
-    // HttpHeaders headers = new HttpHeaders();
-    //
-    // headers.setContentType(MediaType.IMAGE_JPEG); //se va a recibir una imagen de
-    // tipo JPEG
-    //
-    // return new ResponseEntity<>(imagen, headers, HttpStatus.OK);
-    // }
-    //
-    // funcionalidad para devolver ofertaServicio imagen
-    // @GetMapping("/inicio/{idOferta}") //EN INICIO
-    // public ResponseEntity<byte[]> imagenOfertaa(@PathVariable String idOferta) {
-    //
-    // Oferta oferta = ofertaServicio.getOne(idOferta);
-    //
-    // byte[] imagen = oferta.getImagen().getContenido();
-    //
-    // HttpHeaders headers = new HttpHeaders();
-    //
-    // headers.setContentType(MediaType.IMAGE_JPEG); //se va a recibir una imagen de
-    // tipo JPEG
-    //
-    // return new ResponseEntity<>(imagen, headers, HttpStatus.OK);
-    // }
     // PARA ELIMINAR
     @GetMapping("/eliminar/{id}")
     public String eliminar(@PathVariable String id, ModelMap modelo) { // variable de ruta

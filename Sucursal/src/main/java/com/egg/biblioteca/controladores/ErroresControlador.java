@@ -53,7 +53,6 @@ public class ErroresControlador implements ErrorController {
 		return (Integer) httpRequest.getAttribute("javax.servlet.error.status_code");
 	}
 
-	
 	public String getErrorPath() {
 		return "/error.html";
 	}

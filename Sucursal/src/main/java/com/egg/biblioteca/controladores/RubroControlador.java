@@ -1,6 +1,5 @@
 package com.egg.biblioteca.controladores;
 
-
 import com.egg.biblioteca.entidades.Rubro;
 import com.egg.biblioteca.excepciones.MiException;
 import com.egg.biblioteca.servicios.RubroServicio;
@@ -23,9 +22,9 @@ public class RubroControlador {
     @Autowired
     private RubroServicio rubroServicio;
 
-    @GetMapping("/registrar") //localhost:8080/rubro/registrar
+    @GetMapping("/registrar") // localhost:8080/rubro/registrar
     public String registrar() {
-        return "rubro_form.html"; //rubro form
+        return "rubro_form.html"; // rubro form
     }
 
     @PostMapping("/registro")
@@ -54,7 +53,7 @@ public class RubroControlador {
         return "rubro_list";
     }
 
-    //FUNCIONALIDAD MODIFICAR RUBRO 
+    // FUNCIONALIDAD MODIFICAR RUBRO
     @GetMapping("/modificar/{idRubro}")
     public String modificar(@PathVariable String idRubro, ModelMap modelo) {
         modelo.put("rubro", rubroServicio.getOne(idRubro));
@@ -74,8 +73,8 @@ public class RubroControlador {
         }
 
     }
-    
-      //PARA ELIMINAR RUBRO
+
+    // PARA ELIMINAR RUBRO
     @GetMapping("/eliminar/{idRubro}")
     public String eliminar(@PathVariable String idRubro, ModelMap modelo) {
 
@@ -83,7 +82,7 @@ public class RubroControlador {
         return "eliminar_rubro.html";
     }
 
-    //PARA ELIMINAR RUBRO
+    // PARA ELIMINAR RUBRO
     @PostMapping("/eliminado/{idRubro}")
     public String eliminado(@PathVariable String idRubro, ModelMap modelo) {
 

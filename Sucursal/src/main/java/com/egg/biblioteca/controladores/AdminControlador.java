@@ -33,7 +33,7 @@ public class AdminControlador {
 
     @GetMapping("/dashboard")
     public String panelAdministrativo(ModelMap modelo, @RequestParam(defaultValue = "0") int page,
-    @RequestParam(defaultValue = "10") int size) {
+            @RequestParam(defaultValue = "10") int size) {
         List<Producto> productos = productoServicio.listarProductos();
         modelo.addAttribute("productos", productos);
         List<Oferta> ofertas = ofertaServicio.listarOfertas();
@@ -68,12 +68,12 @@ public class AdminControlador {
 
         HttpHeaders headers = new HttpHeaders();
 
-        headers.setContentType(MediaType.IMAGE_JPEG); //se va a recibir una imagen de tipo JPEG
+        headers.setContentType(MediaType.IMAGE_JPEG); // se va a recibir una imagen de tipo JPEG
 
         return new ResponseEntity<>(imagen, headers, HttpStatus.OK);
     }
 
-    //funcionalidad para devolver ofertaServicio imagen
+    
     @GetMapping("/dashboard/{idOferta}")
     public ResponseEntity<byte[]> imagenOferta(@PathVariable String idOferta) {
 
@@ -83,9 +83,9 @@ public class AdminControlador {
 
         HttpHeaders headers = new HttpHeaders();
 
-        headers.setContentType(MediaType.IMAGE_JPEG); //se va a recibir una imagen de tipo JPEG
+        headers.setContentType(MediaType.IMAGE_JPEG); // se va a recibir una imagen de tipo JPEG
 
         return new ResponseEntity<>(imagen, headers, HttpStatus.OK);
     }
- 
+
 }
