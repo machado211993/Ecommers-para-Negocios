@@ -1,4 +1,4 @@
-package com.egg.biblioteca.controladores;
+/*package com.egg.biblioteca.controladores;
 
 import com.egg.biblioteca.entidades.Rubro;
 import com.egg.biblioteca.excepciones.MiException;
@@ -67,4 +67,4 @@ public class RubroControladorRest {
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
-}
+}*/
