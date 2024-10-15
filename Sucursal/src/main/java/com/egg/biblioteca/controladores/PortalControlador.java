@@ -85,7 +85,7 @@ public class PortalControlador {
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @GetMapping("/inicio")
     public String inicio(HttpSession session, ModelMap modelo, @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size) {
+            @RequestParam(defaultValue = "12") int size) {
 
         Usuario logueado = (Usuario) session.getAttribute("usuariosession");
 
@@ -151,7 +151,7 @@ public class PortalControlador {
     // usuarioServicio lista EN INDEX
     @GetMapping("/")
     public String listar(ModelMap modelo, @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size) {
+            @RequestParam(defaultValue = "12") int size) {
         List<Producto> productos = productoServicio.listAll(null);
         modelo.addAttribute("productos", productos);
         List<Oferta> ofertas = ofertaServicio.listarOfertas();

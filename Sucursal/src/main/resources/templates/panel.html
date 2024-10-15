@@ -175,21 +175,27 @@
       </button>
     </div>
   </header>
+  <br>
+  <br>
   <section>
-    <div id="productos" class="d-flex justify-content-center align-items-center flex-wrap img-fluid"
-      style="width: 100%">
-      <div class="card m-2 shadow" style="background-color: #e9ecef; border: none; width: 18rem"
-        th:each="producto : ${productos}">
-        <img th:src="@{/producto/imagen/__${producto.idProducto}__}" alt="imagen-producto"
-          class="card-img-top img-fluid mx-auto" style="height: 200px; object-fit: cover" />
-        <div class="card-body p-0" style="background-color: #e9ecef">
-          <p class="card-text mb-0" th:text="${producto.nombre}" style="font-size: 20px; text-align: center"></p>
-          <h5 class="card-title mt-2 mb-0" style="font-size: 40px; text-align: center; color: black"
-            th:text="'$ ' + ${producto.precio}"></h5>
+    <div id="productos" class="d-flex justify-content-center align-items-center flex-wrap img-fluid" style="width: 100%;">
+        <div class="card m-2 shadow" style="background-color: #e9ecef; border: none; width: 18rem;" 
+             th:each="producto : ${productos}">
+            <!-- Imagen del producto -->
+            <img th:src="@{/producto/imagen/__${producto.idProducto}__}" 
+                 alt="imagen-producto" 
+                 class="card-img-top img-fluid mx-auto product-img" 
+                 style="height: 200px; object-fit: cover; cursor: pointer;" />
+            <div class="card-body p-0" style="background-color: #e9ecef;">
+                <p class="card-text mb-0" th:text="${producto.nombre}" style="font-size: 20px; text-align: center;"></p>
+                <h5 class="card-title mt-2 mb-0" style="font-size: 40px; text-align: center; color: black;" 
+                    th:text="'$ ' + ${producto.precio}"></h5>
+            </div>
         </div>
-      </div>
     </div>
-  </section>
+</section>
+  <br>
+  <br>
   <!-- Controles de paginación -->
   <div th:if="${pageable.totalPages > 1}">
     <ul class="pagination">
@@ -213,6 +219,20 @@
     </ul>
   </div>
   <button id="backToTop" style="display:none; position:fixed; bottom:20px; right:20px;">↑ Volver Arriba</button>
+     <!-- Modal para ampliar las imágenes -->
+     <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="imageModalLabel">Imagen Ampliada</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                  <img id="modalImage" src="" alt="Imagen Ampliada" style="width: 100%; height: auto;">
+              </div>
+          </div>
+      </div>
+        </div>
   <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
       <symbol id="facebook" viewBox="0 0 16 16">
@@ -341,5 +361,16 @@
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
     <script th:src="@{/js/script.js}"></script>
+    <script>
+      // Al hacer clic en una imagen, abrir el modal y cargar la imagen seleccionada
+      document.querySelectorAll('.product-img').forEach(function(img) {
+          img.addEventListener('click', function() {
+              const imgSrc = this.getAttribute('src');
+              document.getElementById('modalImage').setAttribute('src', imgSrc);
+              const modal = new bootstrap.Modal(document.getElementById('imageModal'));
+              modal.show();
+          });
+      });
+  </script>
 </body>
 </html>

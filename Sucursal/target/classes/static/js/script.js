@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
-document.addEventListener("DOMContentLoaded", function() {
+/*document.addEventListener("DOMContentLoaded", function() {
     const productCards = document.querySelectorAll('.card');
 
     productCards.forEach(card => {
@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function() {
             // Aquí podrías agregar el producto a un carrito o hacer algo más dinámico.
         });
     });
-});
+});*/
 
 // script.js
 document.addEventListener("DOMContentLoaded", function() {
@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });*/
 
-document.addEventListener("DOMContentLoaded", function() {
+/*document.addEventListener("DOMContentLoaded", function() {
     const backToTopButton = document.getElementById('backToTop');
     
     window.addEventListener('scroll', function() {
@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", function() {
     backToTopButton.addEventListener('click', function() {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
-});
+});*/
 
 document.addEventListener("DOMContentLoaded", function() {
     const deleteButtons = document.querySelectorAll('.btn-delete');

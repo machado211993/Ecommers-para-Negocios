@@ -33,7 +33,7 @@ public class AdminControlador {
 
     @GetMapping("/dashboard")
     public String panelAdministrativo(ModelMap modelo, @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size) {
+            @RequestParam(defaultValue = "12") int size) {
         List<Producto> productos = productoServicio.listarProductos();
         modelo.addAttribute("productos", productos);
         List<Oferta> ofertas = ofertaServicio.listarOfertas();

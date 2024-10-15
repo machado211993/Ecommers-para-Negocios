@@ -85,7 +85,7 @@ public class ProductoControlador {
     @GetMapping("/lista")
     public String listar(ModelMap modelo,
             @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size) {
+            @RequestParam(defaultValue = "12") int size) {
 
         Page<Producto> productosPage = productoServicio.listarPaginacion(page, size);
         modelo.addAttribute("productos", productosPage.getContent());
